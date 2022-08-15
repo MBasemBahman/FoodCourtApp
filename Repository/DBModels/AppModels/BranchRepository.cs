@@ -12,7 +12,7 @@ namespace Repository.DBModels.AppModels
             _mapper = mapper;
         }
 
-        public IQueryable<BranchDto> GetAccountTypes(RequestParameters parameters)
+        public IQueryable<BranchDto> GetBranchs(RequestParameters parameters)
         {
             return FindAll(parameters, trackChanges: false)
                    .Select(a => new BranchDto
@@ -26,15 +26,15 @@ namespace Repository.DBModels.AppModels
                    .Sort(parameters.OrderBy);
         }
 
-        public async Task<PagedList<BranchDto>> GetAccountTypesPaged(
+        public async Task<PagedList<BranchDto>> GetBranchsPaged(
           RequestParameters parameters)
         {
-            return await PagedList<BranchDto>.ToPagedList(GetAccountTypes(parameters), parameters.PageNumber, parameters.PageSize);
+            return await PagedList<BranchDto>.ToPagedList(GetBranchs(parameters), parameters.PageNumber, parameters.PageSize);
         }
 
-        public BranchDto GetAccountTypebyId(int id)
+        public BranchDto GetBranchbyId(int id)
         {
-            return GetAccountTypes(new RequestParameters { Id = id }).SingleOrDefault();
+            return GetBranchs(new RequestParameters { Id = id }).SingleOrDefault();
         }
 
         public IQueryable<Branch> FindAll(RequestParameters parameters, bool trackChanges)

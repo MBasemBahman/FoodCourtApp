@@ -82,7 +82,7 @@ namespace API.Extensions
                     Example = new OpenApiString("yyyy-MM-ddThh:mm:ss")
                 });
 
-                c.SwaggerDoc("Authentication", new OpenApiInfo { Title = "Authentication" });
+                c.SwaggerDoc("App", new OpenApiInfo { Title = "App" });
 
                 c.OperationFilter<DocsFilter>();
 

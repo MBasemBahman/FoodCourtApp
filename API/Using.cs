@@ -1,4 +1,5 @@
 ﻿global using API.ActionFilters;
+global using API.Controllers;
 global using API.Extensions;
 global using API.Utility;
 global using AutoMapper;
@@ -16,6 +17,7 @@ global using Microsoft.Extensions.Options;
 global using Repository;
 global using Services;
 global using System.Text;
+
 
 
 

@@ -5,6 +5,7 @@
         [DisplayName(nameof(Name))]
         public string Name { get; set; }
 
+        [DisplayName(nameof(ShopCount))]
         public int ShopCount { get; set; }
     }
 }
