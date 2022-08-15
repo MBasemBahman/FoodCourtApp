@@ -20,7 +20,7 @@ namespace Common
             for (int i = 0; i < size; i++)
             {
                 ch = Convert.ToChar(Convert.ToInt32(Math.Floor((26 * random.NextDouble()) + 65)));
-                builder.Append(ch);
+                _ = builder.Append(ch);
             }
             return lowerCase ? builder.ToString().ToLower() : builder.ToString();
         }
@@ -29,9 +29,9 @@ namespace Common
         public static string RandomKey()
         {
             StringBuilder builder = new();
-            builder.Append(RandomString(4, true));
-            builder.Append(RandomNumber(1000, 9999));
-            builder.Append(RandomString(2, true));
+            _ = builder.Append(RandomString(4, true));
+            _ = builder.Append(RandomNumber(1000, 9999));
+            _ = builder.Append(RandomString(2, true));
             return builder.ToString();
         }
 

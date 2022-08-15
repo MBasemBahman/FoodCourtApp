@@ -1,6 +1,7 @@
-﻿using DAL.DBModels.AppModels;
-using DAL.DBModels.AuthModels;
-using DAL.DBModels.ShopModels;
+﻿using Entities.DBModels.AppModels;
+using Entities.DBModels.AuthModels;
+using Entities.DBModels.SharedModels;
+using Entities.DBModels.ShopModels;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Metadata;
 using BC = BCrypt.Net.BCrypt;
@@ -38,11 +39,11 @@ namespace DAL
             foreach (IMutableEntityType entityType in modelBuilder.Model.GetEntityTypes()
               .Where(t => t.ClrType.IsSubclassOf(typeof(BaseEntity))))
             {
-                modelBuilder.Entity(
+                _ = modelBuilder.Entity(
                     entityType.Name,
                     x =>
                     {
-                        x.Property("CreatedAt")
+                        _ = x.Property("CreatedAt")
                             .HasDefaultValueSql("getutcdate()");
                     });
             }
@@ -50,16 +51,16 @@ namespace DAL
             foreach (IMutableEntityType entityType in modelBuilder.Model.GetEntityTypes()
                .Where(t => t.ClrType.IsSubclassOf(typeof(AuditEntity))))
             {
-                modelBuilder.Entity(
+                _ = modelBuilder.Entity(
                     entityType.Name,
                     x =>
                     {
-                        x.Property("LastModifiedAt")
+                        _ = x.Property("LastModifiedAt")
                             .HasDefaultValueSql("getutcdate()");
                     });
             }
 
-            modelBuilder.Entity<SystemUser>().HasData(new SystemUser
+            _ = modelBuilder.Entity<SystemUser>().HasData(new SystemUser
             {
                 Id = 1,
                 UserName = "Developer",

@@ -1,15 +1,24 @@
-﻿namespace Common
+﻿
+namespace Services
 {
-    public class ImgManager
+    public class FileUploader
     {
         private readonly string _rootPath;
 
-        public ImgManager(string rootPath)
+        public FileUploader(string rootPath)
         {
             _rootPath = rootPath;
         }
 
-        public async Task<string> UploudImage(IFormFile file, string storagePath)
+        public void DeleteFile(string filePath)
+        {
+            if (File.Exists(Path.Combine(_rootPath, filePath)))
+            {
+                File.Delete(Path.Combine(_rootPath, filePath));
+            }
+        }
+
+        public async Task<string> UploudFile(IFormFile file, string storagePath)
         {
             string fileName = file.FileName + DateTime.UtcNow.ToString("ddMMyyyyhhmmssfffffffK");
             fileName += Path.GetExtension(file.FileName);
@@ -28,17 +37,6 @@
                 await uploadedFile.CopyToAsync(localFile);
             }
             return storagePath + "/" + fileName;
-        }
-
-        public void DeleteImage(string FilePath, string DomainName)
-        {
-            FilePath = FilePath.Replace(DomainName, "");
-            string FileFullPath = _rootPath + FilePath;
-            // If file with same name exists delete it
-            if (File.Exists(FileFullPath))
-            {
-                File.Delete(FileFullPath);
-            }
         }
     }
 }
