@@ -1,4 +1,9 @@
-﻿namespace Repository
+﻿using Entities.DBModels.AppModels;
+using Entities.DBModels.ShopModels;
+using Entities.DtoModels.AppModels;
+using Entities.DtoModels.ShopModels;
+
+namespace Repository
 {
     public class MappingProfile : Profile
     {
@@ -13,6 +18,27 @@
             CreateMap<DateTime?, string>().ConvertUsing(new DateTimeNullableTypeConverter());
             CreateMap<string, string>().ConvertUsing(new StringTypeConverter());
 
+            #region AppModels
+
+            CreateMap<Branch, BranchDto>();
+
+            CreateMap<BranchCreateOrEditDto, Branch>();
+
+            #endregion
+
+            #region ShopModels
+
+            CreateMap<Shop, ShopDto>();
+
+            CreateMap<ShopCreateDto, Shop>();
+
+            CreateMap<ShopEditDto, Shop>();
+
+            CreateMap<ShopGallery, ShopGalleryDto>();
+
+            CreateMap<ShopGalleryCreateDto, ShopGallery>();
+
+            #endregion
         }
     }
 
