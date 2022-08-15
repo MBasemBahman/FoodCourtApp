@@ -14,6 +14,9 @@ namespace Entities.DtoModels.ShopModels
         [DisplayName(nameof(Name))]
         public string Name { get; set; }
 
+        [DisplayName(nameof(Order))]
+        public int Order { get; set; }
+
         [DisplayName(nameof(Address))]
         [DataType(DataType.MultilineText)]
         public string Address { get; set; }
@@ -21,6 +24,7 @@ namespace Entities.DtoModels.ShopModels
         [DisplayName(nameof(GalleryCount))]
         public int GalleryCount { get; set; }
     }
+
     public class ShopCreateDto
     {
         [DisplayName(nameof(Fk_Branch))]
@@ -36,6 +40,7 @@ namespace Entities.DtoModels.ShopModels
         [DataType(DataType.MultilineText)]
         public string Address { get; set; }
     }
+
     public class ShopEditDto
     {
         [DisplayName(nameof(Fk_Branch))]

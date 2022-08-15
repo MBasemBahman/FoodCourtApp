@@ -10,7 +10,10 @@ namespace Entities.DtoModels.ShopModels
 
     public class ShopGalleryDto : ImageEntityDto
     {
+        [DisplayName(nameof(Order))]
+        public int Order { get; set; }
     }
+
     public class ShopGalleryCreateDto
     {
         [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]

@@ -56,6 +56,7 @@ namespace Repository.DBModels.ShopModels
                          : await FindByCondition(a => a.Id == id, trackChanges: trackChanges)
                          .SingleOrDefaultAsync();
         }
+
         public async Task<string> UploadShopImage(string rootPath, IFormFile file)
         {
             FileUploader uploader = new(rootPath);

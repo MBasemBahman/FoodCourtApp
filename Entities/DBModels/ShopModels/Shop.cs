@@ -9,6 +9,10 @@ namespace Entities.DBModels.ShopModels
         [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
         public string Name { get; set; }
 
+        [DisplayName(nameof(Order))]
+        [DefaultValue(1)]
+        public int Order { get; set; }
+
         [DisplayName(nameof(Address))]
         [DataType(DataType.MultilineText)]
         public string Address { get; set; }

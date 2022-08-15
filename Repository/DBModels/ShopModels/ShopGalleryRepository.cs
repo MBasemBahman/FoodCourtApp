@@ -20,7 +20,7 @@ namespace Repository.DBModels.ShopModels
                    .Select(a => new ShopGalleryDto
                    {
                        Id = a.Id,
-                       ImageUrl=a.ImageUrl,
+                       ImageUrl = a.ImageUrl,
                        CreatedAtVal = a.CreatedAt,
                    })
                    .Search(parameters.SearchColumns, parameters.SearchTerm)
@@ -40,7 +40,7 @@ namespace Repository.DBModels.ShopModels
 
         public IQueryable<ShopGallery> FindAll(ShopGalleryParameters parameters, bool trackChanges)
         {
-            return FindByCondition(a => (parameters.Id == 0 || a.Id == parameters.Id)&&
+            return FindByCondition(a => (parameters.Id == 0 || a.Id == parameters.Id) &&
                                         (parameters.Fk_Shop == 0 || a.Fk_Shop == parameters.Fk_Shop), trackChanges);
         }
 

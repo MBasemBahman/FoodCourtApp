@@ -8,5 +8,9 @@
 
         [DisplayName(nameof(Shop))]
         public Shop Shop { get; set; }
+
+        [DisplayName(nameof(Order))]
+        [DefaultValue(1)]
+        public int Order { get; set; }
     }
 }

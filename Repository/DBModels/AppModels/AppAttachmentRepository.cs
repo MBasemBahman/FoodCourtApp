@@ -20,10 +20,10 @@ namespace Repository.DBModels.AppModels
                    {
                        Id = a.Id,
                        CreatedAtVal = a.CreatedAt,
-                       FileLength=a.FileLength,
-                       FileName=a.FileName,
-                       FileType=a.FileType,
-                       FileUrl=a.FileUrl,
+                       FileLength = a.FileLength,
+                       FileName = a.FileName,
+                       FileType = a.FileType,
+                       FileUrl = a.FileUrl,
                    })
                    .Search(parameters.SearchColumns, parameters.SearchTerm)
                    .Sort(parameters.OrderBy);

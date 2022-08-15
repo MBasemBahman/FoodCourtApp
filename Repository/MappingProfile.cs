@@ -20,23 +20,23 @@ namespace Repository
 
             #region AppModels
 
-            CreateMap<Branch, BranchDto>();
+            _ = CreateMap<Branch, BranchDto>();
 
-            CreateMap<BranchCreateOrEditDto, Branch>();
+            _ = CreateMap<BranchCreateOrEditDto, Branch>();
 
             #endregion
 
             #region ShopModels
 
-            CreateMap<Shop, ShopDto>();
+            _ = CreateMap<Shop, ShopDto>();
 
-            CreateMap<ShopCreateDto, Shop>();
+            _ = CreateMap<ShopCreateDto, Shop>();
 
-            CreateMap<ShopEditDto, Shop>();
+            _ = CreateMap<ShopEditDto, Shop>();
 
-            CreateMap<ShopGallery, ShopGalleryDto>();
+            _ = CreateMap<ShopGallery, ShopGalleryDto>();
 
-            CreateMap<ShopGalleryCreateDto, ShopGallery>();
+            _ = CreateMap<ShopGalleryCreateDto, ShopGallery>();
 
             #endregion
         }
