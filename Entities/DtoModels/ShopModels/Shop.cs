@@ -18,7 +18,7 @@ namespace Entities.DtoModels.ShopModels
         [DataType(DataType.MultilineText)]
         public string Address { get; set; }
 
-        [DisplayName(nameof(ShopGallery))]
-        public IList<ShopGalleryDto> ShopGalleries { get; set; }
+        [DisplayName(nameof(GalleryCount))]
+        public int GalleryCount { get; set; }
     }
 }
