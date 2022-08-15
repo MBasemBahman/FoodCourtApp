@@ -9,10 +9,10 @@ namespace API.Areas.AppArea.Controllers
     public class AppAttachmentController : ExtendControllerBase
     {
         public AppAttachmentController(
-       IMapper mapper,
-       RepositoryManager repositoryManager,
-       LinkGenerator linkGenerator,
-       IWebHostEnvironment environment) : base(mapper, repositoryManager, linkGenerator, environment)
+        IMapper mapper,
+        RepositoryManager repositoryManager,
+        LinkGenerator linkGenerator,
+        IWebHostEnvironment environment) : base(mapper, repositoryManager, linkGenerator, environment)
         { }
 
         [HttpGet]

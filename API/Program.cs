@@ -20,7 +20,7 @@ builder.Services.Configure<ApiBehaviorOptions>(options =>
 builder.Services.ConfigureSwagger();
 builder.Services.AddControllers(opt =>
 {
-    opt.Filters.Add(typeof(GlobalModelStateValidatorAttribute));
+    _ = opt.Filters.Add(typeof(GlobalModelStateValidatorAttribute));
 });
 //builder.Services.ConfigureFirebase("AppSettings");
 
@@ -40,7 +40,7 @@ app.UseRouting();
 
 app.UseEndpoints(endpoints =>
 {
-    endpoints.MapControllers();
+    _ = endpoints.MapControllers();
 });
 
 app.Run();

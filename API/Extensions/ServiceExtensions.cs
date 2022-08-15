@@ -83,6 +83,7 @@ namespace API.Extensions
                 });
 
                 c.SwaggerDoc("App", new OpenApiInfo { Title = "App" });
+                c.SwaggerDoc("Shop", new OpenApiInfo { Title = "Shop" });
 
                 c.OperationFilter<DocsFilter>();
 

@@ -27,6 +27,7 @@
             _ = app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint($"/swagger/App/swagger.json", "App");
+                c.SwaggerEndpoint($"/swagger/Shop/swagger.json", "Shop");
 
                 c.RoutePrefix = "docs";
             });

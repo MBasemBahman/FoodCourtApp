@@ -1,5 +1,4 @@
-﻿using Entities.DBModels.ShopModels;
-using Entities.Features.RequestFeatures;
+﻿using Entities.Features.RequestFeatures;
 
 namespace Entities.DtoModels.ShopModels
 {
