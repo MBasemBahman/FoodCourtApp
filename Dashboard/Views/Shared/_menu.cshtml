@@ -1,0 +1,86 @@
+﻿@{
+  
+    string active = ViewBag.Active == null ? this.ViewContext.RouteData.Values["controller"].ToString() : ViewBag.Active;
+}
+<!-- BEGIN: Main Menu-->
+<div class="main-menu menu-fixed menu-@(ViewBag.light?"light":"dark") menu-accordion menu-shadow" data-scroll-to-active="true">
+    <div class="navbar-header">
+        <ul class="nav navbar-nav flex-row">
+            <li class="nav-item me-auto">
+                <a class="navbar-brand"
+                   asp-action="Index" asp-area="Dashboard" asp-controller="Home">
+                    <h2 class="brand-text">@Localizer.Get("Dashboard")</h2>
+                </a>
+            </li>
+            <li class="nav-item nav-toggle">
+                <a class="nav-link modern-nav-toggle pe-0" data-bs-toggle="collapse">
+                    <i class="d-block d-xl-none text-primary toggle-icon font-medium-4" data-feather="x"></i><i class="d-none d-xl-block collapse-toggle-icon font-medium-4  text-primary" data-feather="disc"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="shadow-bottom"></div>
+    <div class="main-menu-content">
+        <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+            <li class=" navigation-header">
+                <span data-i18n="User Interface">@Localizer.Get("Main")</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
+            </li>
+
+          
+                <li class="@(active =="Home"?"active":"") nav-item">
+                    <a class="d-flex align-items-center"
+                       asp-action="Index"
+                       asp-controller="Home">
+                        <i data-feather="home"></i>
+                        <span class="menu-title text-truncate" data-i18n="Home">
+                            @Localizer.Get("Home")
+                        </span>
+                   </a>
+                </li>
+            
+
+            
+                <li id="BranchList" class="@(active =="Branch"?"active":"") nav-item">
+                    <a class="d-flex align-items-center"
+                       asp-action="Index"
+                       asp-controller="Branch">
+                    <i data-feather='map-pin'></i>
+                        <span class="menu-title text-truncate">
+                            @Localizer.Get("Branches")
+                        </span>
+                    </a>
+                </li>
+            
+
+          
+                <li id="ShopList" class="@(active =="Shop"?"active":"") nav-item">
+                    <a class="d-flex align-items-center"
+                       asp-action="Index"
+                       asp-controller="Shop">
+                    <i data-feather='coffee'></i>
+                        <span class="menu-title text-truncate">
+                            @Localizer.Get("Shops")
+                        </span>
+                    </a>
+                </li>
+
+
+
+            <li  class="@(active =="SystemUser"?"active":"") nav-item">
+                <a class="d-flex align-items-center"
+                   asp-action="Index"
+                   asp-controller="SystemUser">
+                    <i data-feather='user-check'></i>
+                    <span class="menu-title text-truncate">
+                        @Localizer.Get("SystemUsers")
+                    </span>
+                </a>
+            </li>
+            
+
+
+        </ul>
+    </div>
+</div>
+<!-- END: Main Menu-->

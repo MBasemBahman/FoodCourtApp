@@ -7,11 +7,9 @@ namespace Repository.DBModels.AppModels
 {
     public class BranchRepository : RepositoryBase<Branch>
     {
-        protected readonly IMapper _mapper;
 
-        public BranchRepository(DBContext context, IMapper mapper) : base(context)
+        public BranchRepository(DBContext context) : base(context)
         {
-            _mapper = mapper;
         }
 
         public IQueryable<BranchDto> GetBranchs(RequestParameters parameters)
@@ -22,10 +20,16 @@ namespace Repository.DBModels.AppModels
                        Id = a.Id,
                        Name = a.Name,
                        CreatedAtVal = a.CreatedAt,
-                       ShopCount = a.Shops.Count
+                       ShopCount = a.Shops.Count,
+                       ImageUrl = a.StorageUrl + a.ImageUrl
                    })
                    .Search(parameters.SearchColumns, parameters.SearchTerm)
                    .Sort(parameters.OrderBy);
+        }
+
+        public Dictionary<string,string> GetBranchesLoopUp(RequestParameters parameters)
+        {
+            return GetBranchs(parameters).ToDictionary(a => a.Id.ToString(), a => a.Name);
         }
 
         public async Task<PagedList<BranchDto>> GetBranchsPaged(

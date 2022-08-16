@@ -7,11 +7,9 @@ namespace Repository.DBModels.ShopModels
 {
     public class ShopGalleryRepository : RepositoryBase<ShopGallery>
     {
-        protected readonly IMapper _mapper;
 
-        public ShopGalleryRepository(DBContext context, IMapper mapper) : base(context)
+        public ShopGalleryRepository(DBContext context) : base(context)
         {
-            _mapper = mapper;
         }
 
         public IQueryable<ShopGalleryDto> GetShopGallerys(ShopGalleryParameters parameters)
@@ -20,7 +18,7 @@ namespace Repository.DBModels.ShopModels
                    .Select(a => new ShopGalleryDto
                    {
                        Id = a.Id,
-                       ImageUrl = a.ImageUrl,
+                       ImageUrl =a.StorageUrl + a.ImageUrl,
                        CreatedAtVal = a.CreatedAt,
                    })
                    .Search(parameters.SearchColumns, parameters.SearchTerm)

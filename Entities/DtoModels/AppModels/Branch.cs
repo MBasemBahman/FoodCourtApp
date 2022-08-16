@@ -16,5 +16,7 @@
 
         [DisplayName(nameof(BranchImageFile))]
         public IFormFile BranchImageFile { get; set; }
+
+        public string ImageUrl { get; set; }
     }
 }

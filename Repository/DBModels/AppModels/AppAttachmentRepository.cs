@@ -6,11 +6,9 @@ namespace Repository.DBModels.AppModels
 {
     public class AppAttachmentRepository : RepositoryBase<AppAttachment>
     {
-        protected readonly IMapper _mapper;
 
-        public AppAttachmentRepository(DBContext context, IMapper mapper) : base(context)
+        public AppAttachmentRepository(DBContext context) : base(context)
         {
-            _mapper = mapper;
         }
 
         public IQueryable<AppAttachmentDto> GetAppAttachments(RequestParameters parameters)
@@ -23,7 +21,7 @@ namespace Repository.DBModels.AppModels
                        FileLength = a.FileLength,
                        FileName = a.FileName,
                        FileType = a.FileType,
-                       FileUrl = a.FileUrl,
+                       FileUrl =a.StorageUrl + a.FileUrl,
                    })
                    .Search(parameters.SearchColumns, parameters.SearchTerm)
                    .Sort(parameters.OrderBy);
