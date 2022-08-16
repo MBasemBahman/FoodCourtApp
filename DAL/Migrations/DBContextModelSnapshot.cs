@@ -52,7 +52,7 @@ namespace DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AppAttachments");
+                    b.ToTable("AppAttachments", (string)null);
                 });
 
             modelBuilder.Entity("Entities.DBModels.AppModels.Branch", b =>
@@ -95,7 +95,7 @@ namespace DAL.Migrations
                     b.HasIndex("Name")
                         .IsUnique();
 
-                    b.ToTable("Branchs");
+                    b.ToTable("Branchs", (string)null);
                 });
 
             modelBuilder.Entity("Entities.DBModels.AuthModels.SystemUser", b =>
@@ -140,7 +140,7 @@ namespace DAL.Migrations
                     b.HasIndex("UserName")
                         .IsUnique();
 
-                    b.ToTable("SystemUsers");
+                    b.ToTable("SystemUsers", (string)null);
 
                     b.HasData(
                         new
@@ -205,7 +205,7 @@ namespace DAL.Migrations
                     b.HasIndex("Name")
                         .IsUnique();
 
-                    b.ToTable("Shops");
+                    b.ToTable("Shops", (string)null);
                 });
 
             modelBuilder.Entity("Entities.DBModels.ShopModels.ShopGallery", b =>
@@ -237,7 +237,7 @@ namespace DAL.Migrations
 
                     b.HasIndex("Fk_Shop");
 
-                    b.ToTable("ShopGalleries");
+                    b.ToTable("ShopGalleries", (string)null);
                 });
 
             modelBuilder.Entity("Entities.DBModels.ShopModels.Shop", b =>

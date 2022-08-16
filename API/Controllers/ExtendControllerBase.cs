@@ -2,7 +2,7 @@
 {
     [Authorize]
     [ApiController]
-    [AllowAnonymous]
+    [AllowAll]
     public class ExtendControllerBase : ControllerBase
     {
         protected readonly IMapper _mapper;
