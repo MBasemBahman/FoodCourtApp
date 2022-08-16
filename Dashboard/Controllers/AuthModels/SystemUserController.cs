@@ -85,7 +85,7 @@
                 {
                     dataDB = _Mapper.Map<SystemUser>(model);
 
-                    dataDB.CreatedBy = Request.Cookies["FullName"];
+                    dataDB.CreatedBy = Request.Cookies[ViewDataConstants.AccountName];
 
                     dataDB.Password = BC.HashPassword(model.Password);
 
@@ -101,7 +101,7 @@
                     }
                     _Mapper.Map(model, dataDB);
 
-                    dataDB.LastModifiedBy = Request.Cookies["FullName"];
+                    dataDB.LastModifiedBy = Request.Cookies[ViewDataConstants.AccountName];
                 }
 
 

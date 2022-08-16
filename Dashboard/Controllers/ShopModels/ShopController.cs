@@ -105,7 +105,7 @@
                 {
                     dataDB = _Mapper.Map<Shop>(model);
 
-                    dataDB.CreatedBy = Request.Cookies["FullName"];
+                    dataDB.CreatedBy = Request.Cookies[ViewDataConstants.AccountName];
 
                     _Repository.Shop.Create(dataDB);
                 }
@@ -115,7 +115,7 @@
 
                     _Mapper.Map(model, dataDB);
 
-                    dataDB.LastModifiedBy = Request.Cookies["FullName"];
+                    dataDB.LastModifiedBy = Request.Cookies[ViewDataConstants.AccountName];
                 }
 
 
