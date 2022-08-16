@@ -1,0 +1,138 @@
+﻿@model CommonFilter
+@{
+    ViewData["Title"] = Localizer.Get("AppAttachments");
+    ViewBag.useDatatable = true;
+    ViewBag.useModels = true;
+
+    var row = new AppAttachmentDto();
+
+    ViewBag.emptyLayout = ViewData["ProfileLayOut"] != null ? (bool)ViewData["ProfileLayOut"] : false;
+
+    ViewBag.useDropzone = true;
+}
+
+<!-- BEGIN: Content-->
+<div class="app-content content ">
+    <div class="content-overlay"></div>
+    <div class="header-navbar-shadow"></div>
+    <div class="content-wrapper container-xxl p-0">
+        <div class="content-header row">
+            <div class="content-header-left col-md-9 col-12 mb-2">
+                <div class="row breadcrumbs-top">
+                    <div class="col-12">
+                        <h2 class="content-header-title float-start mb-0">@ViewData["Title"]</h2>
+                        <div class="breadcrumb-wrapper">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="#">@Localizer.Get("Dashboard")</a>
+                                </li>
+                                <li class="breadcrumb-item active">
+                                    @ViewData["Title"]
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-body">
+
+            <section id="ajax-datatable">
+                <div class="row">
+                    <div class="col-12">
+                        
+                            <div class="card">
+                                <div class="card-header border-bottom">
+                                    <h4 class="card-title"> @Localizer.Get("Add Files")</h4>
+                                </div>
+                                <br />
+                                <div class="card-body">
+                                <form asp-action="Uploud" asp-controller="AppAttachment" method="post" class="dropzone dropzone-area" id="dpz-multiple-files">
+                                        <div class="dz-message" id="attachmentuploaddropZone">@Localizer.Get("Drop files here or click to upload.")</div>
+                                    </form>
+                                </div>
+                            </div>
+                        
+                        <div class="card">
+                            <div class="card-header border-bottom">
+                                <h4 class="card-title"> @ViewData["Title"]</h4>
+                            </div>
+                            <div class="card-datatable">
+                                <table class="datatables datatables-ajax table table-responsive table">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                @Html.DisplayNameFor(model => row.Id)
+
+                                                <a id="delete" asp-action="Delete">
+                                                </a>
+                                            </th>
+                                            <th>@Html.DisplayNameFor(model => row.FileName)</th>
+                                            <th>@Html.DisplayNameFor(model => row.CreatedAt)</th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => row.Id)
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </div>
+</div>
+<!-- END: Content-->
+
+
+@section scripts{
+    <script>
+        $(function () {
+            var dt_ajax_table = $('.datatables');
+            if (dt_ajax_table.length) {
+                var dt_ajax = dt_ajax_table.dataTable({
+                    // Ajax Filter
+                    ajax: {
+                        url: '@Url.Action("LoadTable")',
+                        type: "POST",
+                        contentType: "application/json",
+                        dataType: "json",
+                        data: function (data) {
+                            data.Id = @Model.Id;
+
+                            return JSON.stringify(data);
+                        }
+                    },
+                    // Columns Setups
+                    columns: [
+                        { data: "id" },
+                        {
+                            data: "fileName",
+                            render: function (data, type, row) {
+                                var image = row.fileUrl;
+                                return  '<a download='+data+' href="' + image + '" target="_blank" class="me-25">'+data+'</a>';
+                            }
+                        },
+                        { data: "createdAt" },
+                        { data: "id" },
+                    ]
+                });
+
+                $("button[type=reset]").on("click", function () {
+                    $(".dt-date").each(function () {
+                        $(this).val('');
+                    })
+                });
+                $('body').on('submit', '.filter', function () {
+                    event.preventDefault();
+                    dt_ajax_table.DataTable().draw();
+
+                });
+
+            }
+        });
+    </script>
+}

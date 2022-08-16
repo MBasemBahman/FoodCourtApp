@@ -64,6 +64,7 @@ namespace DAL
             {
                 Id = 1,
                 UserName = "Developer",
+                Name = "Developer",
                 Password = BC.HashPassword("dev123456")
             });
         }

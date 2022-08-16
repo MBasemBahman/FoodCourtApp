@@ -22,4 +22,10 @@ namespace Entities.DtoModels.ShopModels
         [DisplayName(nameof(Fk_Shop))]
         public int Fk_Shop { get; set; }
     }
+
+    public class ShopGalleryEditDto
+    {
+        [DisplayName(nameof(Order))]
+        public int Order { get; set; }
+    }
 }

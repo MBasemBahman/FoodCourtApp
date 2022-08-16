@@ -1,0 +1,30 @@
+﻿@model ShopGalleryEditDto
+@{
+    ViewBag.emptyLayout = true;
+}
+
+<div class="modal-header">
+    <h5 class="modal-title" id="exampleModalScrollableTitle">@Localizer.Get("Edit")</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+
+
+    <form asp-action="Edit" method="post">
+        <div class="modal-body">
+            <div class="row">
+            <div class="col-md-12 col-12">
+                <div class="mb-1">
+                    <label asp-for="Order" class="form-label"></label>
+                    <input asp-for="Order" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("Order"))" />
+                    <span asp-validation-for="Order" class="text-danger"></span>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-success" data-bs-dismiss="modal">@Localizer.Get("Submit")</button>
+            <button type="button" class="btn btn-dark" data-bs-dismiss="modal">@Localizer.Get("Cancel")</button>
+        </div>
+    </form>
+
+

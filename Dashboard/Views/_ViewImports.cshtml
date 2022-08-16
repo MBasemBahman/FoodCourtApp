@@ -1,0 +1,14 @@
+﻿@using Dashboard;
+@using Entities.Constants;
+@using Dashboard.ViewModel;
+@using Microsoft.AspNetCore.Http;
+@using System.Globalization;
+@using Entities.DtoModels.AppModels;
+@using Entities.DtoModels.ShopModels;
+@using Entities.DtoModels.AuthModels;
+@using Dashboard.Services;
+
+@inject IHttpContextAccessor ContextAccessor
+@inject LocalizationService Localizer
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers

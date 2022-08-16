@@ -7,11 +7,8 @@ namespace Repository.DBModels.ShopModels
 {
     public class ShopRepository : RepositoryBase<Shop>
     {
-        protected readonly IMapper _mapper;
-
-        public ShopRepository(DBContext context, IMapper mapper) : base(context)
+        public ShopRepository(DBContext context) : base(context)
         {
-            _mapper = mapper;
         }
 
         public IQueryable<ShopDto> GetShops(ShopParameters parameters)
@@ -23,11 +20,16 @@ namespace Repository.DBModels.ShopModels
                        Name = a.Name,
                        Address = a.Address,
                        GalleryCount = a.ShopGalleries.Count,
-                       ImageUrl = a.ImageUrl,
+                       ImageUrl =a.StorageUrl +  a.ImageUrl,
                        LastModifiedAtVal = a.LastModifiedAt,
                        LastModifiedBy = a.LastModifiedBy,
                        CreatedBy = a.CreatedBy,
                        CreatedAtVal = a.CreatedAt,
+                       Branch = new Entities.DtoModels.AppModels.BranchDto
+                       {
+                           Name = a.Branch.Name
+                       },
+                       Order = a.Order
                    })
                    .Search(parameters.SearchColumns, parameters.SearchTerm)
                    .Sort(parameters.OrderBy);

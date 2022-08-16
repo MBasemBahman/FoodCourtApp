@@ -7,6 +7,7 @@
         [System.Text.Json.Serialization.JsonIgnore]
         public DateTime CreatedAtVal { get; set; }
 
+        [DisplayName(nameof(CreatedAt))]
         public string CreatedAt => CreatedAtVal.AddHours(2).ToShortDateTimeString();
     }
 }

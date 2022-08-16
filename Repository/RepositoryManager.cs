@@ -1,4 +1,5 @@
 ﻿using Repository.DBModels.AppModels;
+using Repository.DBModels.AuthModels;
 using Repository.DBModels.ShopModels;
 
 namespace Repository
@@ -6,12 +7,10 @@ namespace Repository
     public class RepositoryManager
     {
         private readonly DBContext _dBContext;
-        protected readonly IMapper _mapper;
 
-        public RepositoryManager(DBContext dBContext, IMapper mapper)
+        public RepositoryManager(DBContext dBContext)
         {
             _dBContext = dBContext;
-            _mapper = mapper;
         }
 
         public async Task Save()
@@ -36,6 +35,10 @@ namespace Repository
 
         #endregion
 
+        #region Auth Models
+        private SystemUserRepository _systemUserRepository;
+
+        #endregion
         #endregion
 
         #region Public
@@ -46,7 +49,7 @@ namespace Repository
         {
             get
             {
-                _branchRepository ??= new BranchRepository(_dBContext, _mapper);
+                _branchRepository ??= new BranchRepository(_dBContext);
                 return _branchRepository;
             }
         }
@@ -54,7 +57,7 @@ namespace Repository
         {
             get
             {
-                _appAttachmentRepository ??= new AppAttachmentRepository(_dBContext, _mapper);
+                _appAttachmentRepository ??= new AppAttachmentRepository(_dBContext);
                 return _appAttachmentRepository;
             }
         }
@@ -66,7 +69,7 @@ namespace Repository
         {
             get
             {
-                _shopGalleryRepository ??= new ShopGalleryRepository(_dBContext, _mapper);
+                _shopGalleryRepository ??= new ShopGalleryRepository(_dBContext);
                 return _shopGalleryRepository;
             }
         }
@@ -74,8 +77,20 @@ namespace Repository
         {
             get
             {
-                _shopRepository ??= new ShopRepository(_dBContext, _mapper);
+                _shopRepository ??= new ShopRepository(_dBContext);
                 return _shopRepository;
+            }
+        }
+
+        #endregion
+
+        #region Auth Models
+        public SystemUserRepository SystemUser
+        {
+            get
+            {
+                _systemUserRepository ??= new SystemUserRepository(_dBContext);
+                return _systemUserRepository;
             }
         }
 
