@@ -20,6 +20,8 @@ namespace Repository.DBModels.AppModels
                        Id = a.Id,
                        Name = a.Name,
                        CreatedAtVal = a.CreatedAt,
+                       CreatedBy = a.CreatedBy,
+                       LastModifiedBy = a.LastModifiedBy,
                        ShopCount = a.Shops.Count,
                        ImageUrl = a.StorageUrl + a.ImageUrl
                    })
