@@ -45,6 +45,47 @@
         }
 
 
+        public async Task<IActionResult> Edit(int id = 0)
+        {
+            AppAttachmentEditDto model = new();
+
+            if (id > 0)
+            {
+                AppAttachment dataDb = await _Repository.AppAttachment.FindById(id, trackChanges: false);
+                model = _Mapper.Map<AppAttachmentEditDto>(dataDb);
+            }
+
+            return View("~/Views/AppModels/AppAttachment/Edit.cshtml", model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, AppAttachmentEditDto model)
+        {
+
+            if (!ModelState.IsValid)
+            {
+
+                return View("~/Views/AppModels/AppAttachment/Edit.cshtml", model);
+            }
+            try
+            {
+
+                AppAttachment dataDB = await _Repository.AppAttachment.FindById(id, trackChanges: true);
+
+                _ = _Mapper.Map(model, dataDB);
+
+                await _Repository.Save();
+
+
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception ex)
+            {
+                ViewData[ViewDataConstants.Error] = ex.Message;
+            }
+            return View("~/Views/AppModels/AppAttachment/Edit.cshtml", model);
+        }
+
         public async Task<IActionResult> Delete(int id)
         {
             AppAttachment data = await _Repository.AppAttachment.FindById(id, trackChanges: false);

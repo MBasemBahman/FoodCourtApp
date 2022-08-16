@@ -64,14 +64,20 @@
                                     <br />
 
                                     <div class="row">
-                                        <div class="col-md-12 col-12">
+                                        <div class="col-md-6 col-12">
                                             <div class="mb-1">
                                                 <label asp-for="Name" class="form-label"></label>
                                                 <input asp-for="Name" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("Name"))" />
                                                 <span asp-validation-for="Name" class="text-danger"></span>
                                             </div>
                                         </div>
-                                       
+                                        <div class="col-md-6 col-12">
+                                            <div class="mb-1">
+                                                <label asp-for="Order" class="form-label"></label>
+                                                <input asp-for="Order" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("Order"))" />
+                                                <span asp-validation-for="Order" class="text-danger"></span>
+                                            </div>
+                                        </div>
                                    
                                         <hr />
                                         <div class="col-12">

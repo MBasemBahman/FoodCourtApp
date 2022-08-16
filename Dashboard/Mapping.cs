@@ -40,6 +40,10 @@
                                 .ForMember(dest => dest.ImageUrl, opt => opt.MapFrom(src => src.StorageUrl + src.ImageUrl));
 
 
+            _ = CreateMap<AppAttachment, AppAttachmentEditDto>();
+
+            _ = CreateMap<AppAttachmentEditDto, AppAttachment>();
+
             #endregion
 
             #region ShopModels

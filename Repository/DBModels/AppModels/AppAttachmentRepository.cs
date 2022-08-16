@@ -24,6 +24,7 @@ namespace Repository.DBModels.AppModels
                        FileName = a.FileName,
                        FileType = a.FileType,
                        FileUrl = a.StorageUrl + a.FileUrl,
+                       Order = a.Order
                    })
                    .Search(parameters.SearchColumns, parameters.SearchTerm)
                    .Sort(parameters.OrderBy);

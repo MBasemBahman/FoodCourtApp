@@ -64,11 +64,13 @@
                                         <tr>
                                             <th>
                                                 @Html.DisplayNameFor(model => row.Id)
-
+                                                <a id="editModal" asp-action="Edit">
+                                                </a>
                                                 <a id="delete" asp-action="Delete">
                                                 </a>
                                             </th>
                                             <th>@Html.DisplayNameFor(model => row.FileName)</th>
+                                            <th>@Html.DisplayNameFor(model => row.Order)</th>
                                             <th>@Html.DisplayNameFor(model => row.CreatedAt)</th>
                                             <th>
                                                 @Html.DisplayNameFor(model => row.Id)
@@ -116,6 +118,7 @@
                                 return  '<a download='+data+' href="' + image + '" target="_blank" class="me-25">'+data+'</a>';
                             }
                         },
+                        { data: "order" },
                         { data: "createdAt" },
                         { data: "id" },
                     ]

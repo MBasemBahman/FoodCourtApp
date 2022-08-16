@@ -23,7 +23,8 @@ namespace Repository.DBModels.AppModels
                        CreatedBy = a.CreatedBy,
                        LastModifiedBy = a.LastModifiedBy,
                        ShopCount = a.Shops.Count,
-                       ImageUrl = a.StorageUrl + a.ImageUrl
+                       ImageUrl = a.StorageUrl + a.ImageUrl,
+                       Order = a.Order
                    })
                    .Search(parameters.SearchColumns, parameters.SearchTerm)
                    .Sort(parameters.OrderBy);

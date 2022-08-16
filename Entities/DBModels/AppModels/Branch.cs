@@ -9,6 +9,10 @@ namespace Entities.DBModels.AppModels
         [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
         public string Name { get; set; }
 
+        [DisplayName(nameof(Order))]
+        [DefaultValue(1)]
+        public int Order { get; set; }
+
         [DisplayName(nameof(Shops))]
         public ICollection<Shop> Shops { get; set; }
     }

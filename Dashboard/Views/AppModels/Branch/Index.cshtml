@@ -67,6 +67,7 @@
 
                                             </th>
                                             <th>@Html.DisplayNameFor(model => row.Name)</th>
+                                            <th>@Html.DisplayNameFor(model => row.Order)</th>
                                             <th>@Html.DisplayNameFor(model => row.CreatedAt)</th>
                                             <th>
                                                 @Html.DisplayNameFor(model => row.Id)
@@ -132,7 +133,8 @@
                         }
                     },
                 
-                    { data: "createdAt" },
+                        { data: "order" },
+                        { data: "createdAt" },
                    {data:"id"},
                 ]
             });
