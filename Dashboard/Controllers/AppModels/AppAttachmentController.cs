@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Routing;
-
-namespace Dashboard.Controllers.AppModels
+﻿namespace Dashboard.Controllers.AppModels
 {
     public class AppAttachmentController : ExtendControllerBase
     {
@@ -17,7 +14,7 @@ namespace Dashboard.Controllers.AppModels
 
             ViewData["Active"] = "AppAttachment";
 
-            CommonFilter filter = new CommonFilter
+            CommonFilter filter = new()
             {
                 Id = Id,
             };
@@ -34,7 +31,7 @@ namespace Dashboard.Controllers.AppModels
                 SearchColumns = "Id"
             };
 
-            _Mapper.Map(dtParameters, parameters);
+            _ = _Mapper.Map(dtParameters, parameters);
 
             PagedList<AppAttachmentDto> data = await _Repository.AppAttachment.GetAppAttachmentsPaged(parameters);
 
@@ -47,7 +44,7 @@ namespace Dashboard.Controllers.AppModels
             return Json(dataTableManager.ReturnTable(dataTableResult));
         }
 
-     
+
         public async Task<IActionResult> Delete(int id)
         {
             AppAttachment data = await _Repository.AppAttachment.FindById(id, trackChanges: false);

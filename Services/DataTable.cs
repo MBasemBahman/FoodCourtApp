@@ -2,7 +2,7 @@
 
 namespace Services
 {
-    public class DataTable<T> 
+    public class DataTable<T>
     {
         public DataTableResult<T> LoadTable(DtParameters dtParameters, IEnumerable<T> resultData, int filteredCount, int totalCount)
         {

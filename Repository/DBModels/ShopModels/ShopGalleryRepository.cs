@@ -18,7 +18,7 @@ namespace Repository.DBModels.ShopModels
                    .Select(a => new ShopGalleryDto
                    {
                        Id = a.Id,
-                       ImageUrl =a.StorageUrl + a.ImageUrl,
+                       ImageUrl = a.StorageUrl + a.ImageUrl,
                        CreatedAtVal = a.CreatedAt,
                        Order = a.Order
                    })

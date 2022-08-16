@@ -20,7 +20,7 @@ namespace Repository.DBModels.ShopModels
                        Name = a.Name,
                        Address = a.Address,
                        GalleryCount = a.ShopGalleries.Count,
-                       ImageUrl =a.StorageUrl +  a.ImageUrl,
+                       ImageUrl = a.StorageUrl + a.ImageUrl,
                        LastModifiedAtVal = a.LastModifiedAt,
                        LastModifiedBy = a.LastModifiedBy,
                        CreatedBy = a.CreatedBy,

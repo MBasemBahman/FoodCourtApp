@@ -1,7 +1,5 @@
 ﻿using Entities.DBModels.AuthModels;
 using Entities.DtoModels.AuthModels;
-using Microsoft.AspNetCore.Http;
-using Services;
 
 namespace Repository.DBModels.AuthModels
 {
@@ -36,7 +34,7 @@ namespace Repository.DBModels.AuthModels
             return await PagedList<SystemUserDto>.ToPagedList(GetSystemUsers(parameters), parameters.PageNumber, parameters.PageSize);
         }
 
-       
+
 
         public SystemUserDto GetSystemUserbyId(int id)
         {
@@ -45,7 +43,7 @@ namespace Repository.DBModels.AuthModels
 
         public IQueryable<SystemUser> FindAll(RequestParameters parameters, bool trackChanges)
         {
-            return FindByCondition(a => (parameters.Id == 0 || a.Id == parameters.Id),trackChanges);
+            return FindByCondition(a => parameters.Id == 0 || a.Id == parameters.Id, trackChanges);
         }
 
         public async Task<SystemUser> FindById(int id, bool trackChanges)
@@ -55,4 +53,4 @@ namespace Repository.DBModels.AuthModels
                          .SingleOrDefaultAsync();
         }
     }
-    }
+}

@@ -12,7 +12,7 @@
 
         public IActionResult Index(int Id)
         {
-            CommonFilter filter = new CommonFilter
+            CommonFilter filter = new()
             {
                 Id = Id
             };
@@ -30,7 +30,7 @@
                 SearchColumns = "Id,UserName"
             };
 
-            _Mapper.Map(dtParameters, parameters);
+            _ = _Mapper.Map(dtParameters, parameters);
 
             PagedList<SystemUserDto> data = await _Repository.SystemUser.GetSystemUsersPaged(parameters);
 
@@ -61,7 +61,7 @@
 
             if (id > 0)
             {
-                var dataDb = await _Repository.SystemUser.FindById(id, trackChanges: false);
+                SystemUser dataDb = await _Repository.SystemUser.FindById(id, trackChanges: false);
                 model = _Mapper.Map<SystemUserCreateOrEditDto>(dataDb);
             }
 
@@ -99,7 +99,7 @@
                     {
                         model.Password = BC.HashPassword(model.Password);
                     }
-                    _Mapper.Map(model, dataDB);
+                    _ = _Mapper.Map(model, dataDB);
 
                     dataDB.LastModifiedBy = Request.Cookies[ViewDataConstants.AccountName];
                 }
@@ -108,7 +108,7 @@
                 await _Repository.Save();
 
 
-                return  (IActionResult)RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
             {

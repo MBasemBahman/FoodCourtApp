@@ -3,7 +3,7 @@ using Entities.DBModels.ShopModels;
 using Entities.DtoModels.AppModels;
 using Entities.DtoModels.ShopModels;
 
-namespace Repository
+namespace API
 {
     public class MappingProfile : Profile
     {
@@ -20,28 +20,28 @@ namespace Repository
 
             #region AppModels
 
-            CreateMap<Branch, BranchDto>();
+            _ = CreateMap<Branch, BranchDto>();
 
-            CreateMap<BranchCreateOrEditDto, Branch>();
+            _ = CreateMap<BranchCreateOrEditDto, Branch>();
 
-            CreateMap<Branch, BranchCreateOrEditDto>();
+            _ = CreateMap<Branch, BranchCreateOrEditDto>();
             #endregion
 
             #region ShopModels
 
-             CreateMap<Shop, ShopDto>();
+            _ = CreateMap<Shop, ShopDto>();
 
-            CreateMap<ShopCreateDto, Shop>();
+            _ = CreateMap<ShopCreateDto, Shop>();
 
-            CreateMap<ShopEditDto, Shop>();
+            _ = CreateMap<ShopEditDto, Shop>();
 
-             CreateMap<ShopGallery, ShopGalleryDto>();
+            _ = CreateMap<ShopGallery, ShopGalleryDto>();
 
-             CreateMap<ShopGalleryCreateDto, ShopGallery>();
+            _ = CreateMap<ShopGalleryCreateDto, ShopGallery>();
 
-            CreateMap<ShopCreateOrEditDto, Shop>();
+            _ = CreateMap<ShopCreateOrEditDto, Shop>();
 
-            CreateMap<Shop, ShopCreateOrEditDto>();
+            _ = CreateMap<Shop, ShopCreateOrEditDto>();
             #endregion
         }
     }

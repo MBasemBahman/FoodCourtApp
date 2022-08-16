@@ -1,9 +1,6 @@
-﻿using Entities.Extensions;
-using Microsoft.AspNetCore.Mvc;
-
-namespace Dashboard.Controllers
+﻿namespace Dashboard.Controllers
 {
-    public class ExtendControllerBase: Controller
+    public class ExtendControllerBase : Controller
     {
         protected readonly RepositoryManager _Repository;
         protected readonly IMapper _Mapper;

@@ -6,11 +6,11 @@ namespace Dashboard.Extensions
     {
         public static void ConfigureCors(this IServiceCollection services)
         {
-            services.AddCors(options =>
+            _ = services.AddCors(options =>
             {
                 options.AddDefaultPolicy(builder =>
                 {
-                    builder.SetIsOriginAllowed(origin => true)
+                    _ = builder.SetIsOriginAllowed(origin => true)
                            .AllowAnyMethod()
                            .AllowAnyHeader()
                            .AllowCredentials()
@@ -21,30 +21,30 @@ namespace Dashboard.Extensions
             });
         }
 
-    
-       
+
+
         public static void ConfigureSqlContext(this IServiceCollection services,
             IConfiguration configuration)
         {
-               services.AddDbContext<DbContext, DBContext>(options => options.UseSqlServer(configuration.GetConnectionString("sqlConnection")));
-           
+            _ = services.AddDbContext<DbContext, DBContext>(options => options.UseSqlServer(configuration.GetConnectionString("sqlConnection")));
+
         }
 
         public static void ConfigureRepositoryManager(this IServiceCollection services)
         {
-            services.AddScoped<RepositoryManager>();
+            _ = services.AddScoped<RepositoryManager>();
         }
 
         public static void ConfigureResponseCaching(this IServiceCollection services)
         {
-            services.AddResponseCaching();
+            _ = services.AddResponseCaching();
         }
 
         public static void ConfigureLocalization(this IServiceCollection services)
         {
-            services.AddLocalization(options => options.ResourcesPath = "Resources");
+            _ = services.AddLocalization(options => options.ResourcesPath = "Resources");
 
-            services.Configure<RequestLocalizationOptions>(options =>
+            _ = services.Configure<RequestLocalizationOptions>(options =>
             {
                 CultureInfo[] supportedCultures = new[]
                 {
@@ -56,12 +56,12 @@ namespace Dashboard.Extensions
                 options.SupportedUICultures = supportedCultures;
             });
 
-            services.AddSingleton<LocalizationService>();
+            _ = services.AddSingleton<LocalizationService>();
         }
 
         public static void ConfigureViews(this IServiceCollection services)
         {
-            services.AddControllersWithViews()
+            _ = services.AddControllersWithViews()
                    .AddViewLocalization()
                    .AddDataAnnotationsLocalization(options =>
                    {
@@ -81,7 +81,7 @@ namespace Dashboard.Extensions
 
         public static void ConfigureSessionAndCookie(this IServiceCollection services)
         {
-            services.AddSession(options =>
+            _ = services.AddSession(options =>
             {
                 options.IdleTimeout = TimeSpan.FromMinutes(1);
                 options.IOTimeout = TimeSpan.FromMinutes(5);
@@ -94,12 +94,12 @@ namespace Dashboard.Extensions
                 options.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
             });
 
-            services.Configure<CookiePolicyOptions>(options =>
+            _ = services.Configure<CookiePolicyOptions>(options =>
             {
                 options.MinimumSameSitePolicy = SameSiteMode.Strict;
             });
 
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            _ = services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
 
 

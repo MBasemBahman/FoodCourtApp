@@ -1,3 +1,4 @@
+using API;
 using API.Middlewares;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);

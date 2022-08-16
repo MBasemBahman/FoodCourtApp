@@ -10,19 +10,19 @@
 
         }
 
-        public IActionResult Index(int Id,int Fk_Branch, bool ProfileLayOut = false)
+        public IActionResult Index(int Id, int Fk_Branch, bool ProfileLayOut = false)
         {
-            
+
             ViewData["Active"] = "Shop";
 
-            ShopFilter filter = new ShopFilter
+            ShopFilter filter = new()
             {
                 Id = Id,
                 Fk_Branch = Fk_Branch
             };
 
             ViewData["ProfileLayOut"] = ProfileLayOut;
-            return View("~/Views/ShopModels/Shop/Index.cshtml",filter);
+            return View("~/Views/ShopModels/Shop/Index.cshtml", filter);
         }
 
         [HttpPost]
@@ -33,7 +33,7 @@
                 SearchColumns = "Id,Name"
             };
 
-            _Mapper.Map(dtParameters, parameters);
+            _ = _Mapper.Map(dtParameters, parameters);
 
             PagedList<ShopDto> data = await _Repository.Shop.GetShopsPaged(parameters);
 
@@ -78,11 +78,11 @@
 
             if (id > 0)
             {
-                var dataDb = await _Repository.Shop.FindById(id, trackChanges: false);
+                Shop dataDb = await _Repository.Shop.FindById(id, trackChanges: false);
                 model = _Mapper.Map<ShopCreateOrEditDto>(dataDb);
             }
 
-            SetViewData(IsProfile,id);
+            SetViewData(IsProfile, id);
 
             return View("~/Views/ShopModels/Shop/CreateOrEdit.cshtml", model);
         }
@@ -94,7 +94,7 @@
 
             if (!ModelState.IsValid)
             {
-                SetViewData(IsProfile,id);
+                SetViewData(IsProfile, id);
                 return View("~/Views/ShopModels/Shop/CreateOrEdit.cshtml", model);
             }
             try
@@ -113,7 +113,7 @@
                 {
                     dataDB = await _Repository.Shop.FindById(id, trackChanges: true);
 
-                    _Mapper.Map(model, dataDB);
+                    _ = _Mapper.Map(model, dataDB);
 
                     dataDB.LastModifiedBy = Request.Cookies[ViewDataConstants.AccountName];
                 }
@@ -137,7 +137,7 @@
             {
                 ViewData[ViewDataConstants.Error] = ex.Message;
             }
-            SetViewData(IsProfile,id);
+            SetViewData(IsProfile, id);
             return View("~/Views/ShopModels/Shop/CreateOrEdit.cshtml", model);
         }
 
@@ -159,7 +159,7 @@
             return RedirectToAction(nameof(Index));
         }
 
-        private void SetViewData(bool IsProfile,int id)
+        private void SetViewData(bool IsProfile, int id)
         {
             ViewData["IsProfile"] = IsProfile;
             ViewData["id"] = id;

@@ -15,7 +15,7 @@
 
             ViewData["Active"] = "Shop";
 
-            ShopGalleryFilter filter = new ShopGalleryFilter
+            ShopGalleryFilter filter = new()
             {
                 Id = Id,
                 Fk_Shop = Fk_Shop
@@ -33,7 +33,7 @@
                 SearchColumns = "Id"
             };
 
-            _Mapper.Map(dtParameters, parameters);
+            _ = _Mapper.Map(dtParameters, parameters);
 
             PagedList<ShopGalleryDto> data = await _Repository.ShopGallery.GetShopGallerysPaged(parameters);
 
@@ -52,7 +52,7 @@
 
             if (id > 0)
             {
-                var dataDb = await _Repository.ShopGallery.FindById(id, trackChanges: false);
+                ShopGallery dataDb = await _Repository.ShopGallery.FindById(id, trackChanges: false);
                 model = _Mapper.Map<ShopGalleryEditDto>(dataDb);
             }
 
@@ -75,12 +75,12 @@
 
                 dataDB = await _Repository.ShopGallery.FindById(id, trackChanges: true);
 
-                _Mapper.Map(model, dataDB);
+                _ = _Mapper.Map(model, dataDB);
 
                 await _Repository.Save();
 
 
-                return  (IActionResult)RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
             {
@@ -119,7 +119,7 @@
                 {
                     Fk_Shop = Fk_Shop,
                     StorageUrl = storageUrl,
-                    ImageUrl = await _Repository.ShopGallery.UploadShopGalleryImages(_environment.WebRootPath,Images)
+                    ImageUrl = await _Repository.ShopGallery.UploadShopGalleryImages(_environment.WebRootPath, Images)
                 };
 
                 _Repository.ShopGallery.Create(ShopGallery);
@@ -128,6 +128,6 @@
             return Ok();
         }
 
-       
+
     }
 }

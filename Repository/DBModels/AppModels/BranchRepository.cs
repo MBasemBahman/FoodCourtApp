@@ -29,7 +29,7 @@ namespace Repository.DBModels.AppModels
                    .Sort(parameters.OrderBy);
         }
 
-        public Dictionary<string,string> GetBranchesLoopUp(RequestParameters parameters)
+        public Dictionary<string, string> GetBranchesLoopUp(RequestParameters parameters)
         {
             return GetBranchs(parameters).ToDictionary(a => a.Id.ToString(), a => a.Name);
         }

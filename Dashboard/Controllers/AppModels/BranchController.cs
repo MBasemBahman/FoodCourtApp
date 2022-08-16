@@ -2,37 +2,37 @@
 {
     public class BranchController : ExtendControllerBase
     {
- 
+
         public BranchController(RepositoryManager Repository, IMapper Mapper, IHttpContextAccessor HttpContextAccessor,
           LocalizationService Localizer, LinkGenerator linkGenerator,
-                 IWebHostEnvironment environment) : base(Repository,Mapper,HttpContextAccessor,Localizer,linkGenerator,environment)
+                 IWebHostEnvironment environment) : base(Repository, Mapper, HttpContextAccessor, Localizer, linkGenerator, environment)
         {
-           
+
         }
 
         public IActionResult Index(int Id)
         {
-            CommonFilter filter = new CommonFilter
+            CommonFilter filter = new()
             {
                 Id = Id
             };
             ViewData["Active"] = "Branch";
 
 
-            return View("~/Views/AppModels/Branch/Index.cshtml",filter);
+            return View("~/Views/AppModels/Branch/Index.cshtml", filter);
         }
 
         [HttpPost]
-        public async  Task<IActionResult> LoadTable([FromBody] CommonFilter dtParameters)
+        public async Task<IActionResult> LoadTable([FromBody] CommonFilter dtParameters)
         {
             RequestParameters parameters = new()
             {
                 SearchColumns = "Id,Name"
             };
 
-            _Mapper.Map(dtParameters, parameters);
+            _ = _Mapper.Map(dtParameters, parameters);
 
-            PagedList<BranchDto> data =await _Repository.Branch.GetBranchsPaged(parameters);
+            PagedList<BranchDto> data = await _Repository.Branch.GetBranchsPaged(parameters);
 
             List<BranchDto> resultDto = _Mapper.Map<List<BranchDto>>(data);
 
@@ -48,7 +48,7 @@
         {
             ViewData["Active"] = "Branch";
 
-            BranchDto Branch =  _Repository.Branch.GetBranchbyId(id);
+            BranchDto Branch = _Repository.Branch.GetBranchbyId(id);
 
             ViewData["ProfileLayOut"] = true;
 
@@ -68,13 +68,13 @@
             return Branch == null ? NotFound() : View("~/Views/AppModels/Branch/Profile.cshtml", Branch);
         }
 
-        public async Task<IActionResult> CreateOrEdit(int id = 0,bool IsProfile = false)
+        public async Task<IActionResult> CreateOrEdit(int id = 0, bool IsProfile = false)
         {
             BranchCreateOrEditDto model = new();
 
             if (id > 0)
             {
-                var dataDb = await _Repository.Branch.FindById(id, trackChanges: false);
+                Branch dataDb = await _Repository.Branch.FindById(id, trackChanges: false);
                 model = _Mapper.Map<BranchCreateOrEditDto>(dataDb);
             }
 
@@ -86,7 +86,7 @@
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateOrEdit(int id, BranchCreateOrEditDto model,bool IsProfile = false)
+        public async Task<IActionResult> CreateOrEdit(int id, BranchCreateOrEditDto model, bool IsProfile = false)
         {
 
             if (!ModelState.IsValid)
@@ -97,7 +97,7 @@
             }
             try
             {
-              
+
                 Branch dataDB = new();
                 if (id == 0)
                 {
@@ -111,21 +111,21 @@
                 {
                     dataDB = await _Repository.Branch.FindById(id, trackChanges: true);
 
-                    _Mapper.Map(model, dataDB);
+                    _ = _Mapper.Map(model, dataDB);
 
                     dataDB.LastModifiedBy = Request.Cookies[ViewDataConstants.AccountName];
                 }
 
 
                 IFormFile imageFile = HttpContext.Request.Form.Files["ImageFile"];
-               
+
                 string storageUrl = _linkGenerator.GetUriByAction(HttpContext).GetBaseUri(HttpContext.Request.RouteValues["controller"].ToString());
                 if (imageFile != null)
                 {
                     dataDB.ImageUrl = await _Repository.Branch.UploadBranchImage(_environment.WebRootPath, imageFile);
                     dataDB.StorageUrl = storageUrl;
                 }
-              
+
                 await _Repository.Save();
 
 
@@ -145,8 +145,9 @@
         {
             Branch data = await _Repository.Branch.FindById(id, trackChanges: false);
 
-            return View("~/Views/AppModels/Branch/Delete.cshtml", data != null && !_Repository.Shop.FindAll(new 
-                ShopParameters { Fk_Branch = id},trackChanges:false).Any());
+            return View("~/Views/AppModels/Branch/Delete.cshtml", data != null && !_Repository.Shop.FindAll(new
+                ShopParameters
+            { Fk_Branch = id }, trackChanges: false).Any());
         }
 
         [HttpPost, ActionName("Delete")]
@@ -154,7 +155,7 @@
         {
             Branch data = await _Repository.Branch.FindById(id, trackChanges: false);
 
-             _Repository.Branch.Delete(data);
+            _Repository.Branch.Delete(data);
             await _Repository.Save();
 
             return RedirectToAction(nameof(Index));

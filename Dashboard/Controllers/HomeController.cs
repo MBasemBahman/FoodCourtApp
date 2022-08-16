@@ -1,4 +1,4 @@
-﻿namespace Dashboard.Areas.Dashboard.Controllers
+﻿namespace Dashboard.Controllers
 {
     public class HomeController : Controller
     {
@@ -23,8 +23,8 @@
 
         public IActionResult SetSettings()
         {
-            Culture(ViewDataConstants.Arabic);
-            Theme(ViewDataConstants.Light);
+            _ = Culture(ViewDataConstants.Arabic);
+            _ = Theme(ViewDataConstants.Light);
 
             return RedirectToAction(nameof(Index));
         }

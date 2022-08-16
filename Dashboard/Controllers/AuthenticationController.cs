@@ -15,9 +15,9 @@
         public IActionResult Index()
         {
             string UserName = Request.Cookies[ViewDataConstants.AccountName];
-            if ((!string.IsNullOrEmpty(UserName)) && _Repository.SystemUser.FindByCondition(a => a.UserName == UserName,trackChanges:false).Any())
+            if ((!string.IsNullOrEmpty(UserName)) && _Repository.SystemUser.FindByCondition(a => a.UserName == UserName, trackChanges: false).Any())
             {
-                SystemUser systemUser = _Repository.SystemUser.FindByCondition(a => a.UserName == UserName,trackChanges:false).FirstOrDefault();
+                SystemUser systemUser = _Repository.SystemUser.FindByCondition(a => a.UserName == UserName, trackChanges: false).FirstOrDefault();
                 SetCookies(systemUser);
 
                 return Request.Headers.Referer.Any()
@@ -55,7 +55,7 @@
         public IActionResult ChangePassword()
         {
             string UserName = Request.Cookies[ViewDataConstants.AccountName];
-            return string.IsNullOrEmpty(UserName) || !_Repository.SystemUser.FindByCondition(a=>a.UserName==UserName,trackChanges:false).Any() ? NotFound() : View();
+            return string.IsNullOrEmpty(UserName) || !_Repository.SystemUser.FindByCondition(a => a.UserName == UserName, trackChanges: false).Any() ? NotFound() : View();
         }
 
 
@@ -74,7 +74,7 @@
                         return NotFound();
                     }
 
-                    SystemUser systemUser = _Repository.SystemUser.FindByCondition(a => a.UserName == UserName,trackChanges:true).FirstOrDefault();
+                    SystemUser systemUser = _Repository.SystemUser.FindByCondition(a => a.UserName == UserName, trackChanges: true).FirstOrDefault();
 
                     if (!BC.Verify(model.OldPassword, systemUser.Password))
                     {
@@ -83,7 +83,7 @@
 
                     systemUser.Password = BC.HashPassword(model.NewPassword);
 
-                  await  _Repository.Save();
+                    await _Repository.Save();
 
                     return RedirectToAction(nameof(Logout));
                 }

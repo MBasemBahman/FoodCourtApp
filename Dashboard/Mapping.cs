@@ -1,10 +1,4 @@
-﻿using Entities.DBModels.AppModels;
-using Entities.DBModels.ShopModels;
-using Entities.DtoModels.AppModels;
-using Entities.DtoModels.ShopModels;
-using Dashboard.ViewModel;
-
-namespace Dashboard
+﻿namespace Dashboard
 {
     public class Mapping : Profile
     {
@@ -22,7 +16,7 @@ namespace Dashboard
             CreateMap<string, string>().ConvertUsing(new StringTypeConverter());
 
 
-            CreateMap<DtParameters, RequestParameters>()
+            _ = CreateMap<DtParameters, RequestParameters>()
            .ForMember(dest => dest.SearchTerm, opt => opt.MapFrom(src => src.Search == null ? "" : src.Search.Value))
            .ForMember(dest => dest.OrderBy, opt =>
                               opt.MapFrom(src => src.Order == null ?
@@ -39,31 +33,31 @@ namespace Dashboard
             #region AppModels
 
 
-            CreateMap<BranchCreateOrEditDto, Branch>()
+            _ = CreateMap<BranchCreateOrEditDto, Branch>()
                 .ForMember(dest => dest.ImageUrl, opt => opt.Ignore());
 
-            CreateMap<Branch, BranchCreateOrEditDto>()
+            _ = CreateMap<Branch, BranchCreateOrEditDto>()
                                 .ForMember(dest => dest.ImageUrl, opt => opt.MapFrom(src => src.StorageUrl + src.ImageUrl));
-          
+
 
             #endregion
 
             #region ShopModels
 
 
-            CreateMap<ShopCreateOrEditDto, Shop>()
+            _ = CreateMap<ShopCreateOrEditDto, Shop>()
                 .ForMember(dest => dest.ImageUrl, opt => opt.Ignore());
 
-            CreateMap<Shop, ShopCreateOrEditDto>()
+            _ = CreateMap<Shop, ShopCreateOrEditDto>()
                 .ForMember(dest => dest.ImageUrl, opt => opt.MapFrom(src => src.StorageUrl + src.ImageUrl));
 
-            CreateMap<ShopFilter, ShopParameters>();
+            _ = CreateMap<ShopFilter, ShopParameters>();
 
-            CreateMap<ShopGallery, ShopGalleryEditDto>();
+            _ = CreateMap<ShopGallery, ShopGalleryEditDto>();
 
-            CreateMap<ShopGalleryEditDto,ShopGallery>();
+            _ = CreateMap<ShopGalleryEditDto, ShopGallery>();
 
-            CreateMap<ShopGalleryFilter, ShopGalleryParameters>();
+            _ = CreateMap<ShopGalleryFilter, ShopGalleryParameters>();
 
             #endregion
 
@@ -71,9 +65,9 @@ namespace Dashboard
             #region Auth Models
 
 
-            CreateMap<SystemUserCreateOrEditDto, SystemUser>();
+            _ = CreateMap<SystemUserCreateOrEditDto, SystemUser>();
 
-            CreateMap<SystemUser, SystemUserCreateOrEditDto>();
+            _ = CreateMap<SystemUser, SystemUserCreateOrEditDto>();
 
             #endregion
 

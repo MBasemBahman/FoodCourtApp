@@ -1,7 +1,5 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-#nullable disable
 
 namespace DAL.Migrations
 {
@@ -9,7 +7,7 @@ namespace DAL.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
+            _ = migrationBuilder.CreateTable(
                 name: "AppAttachments",
                 columns: table => new
                 {
@@ -24,10 +22,10 @@ namespace DAL.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AppAttachments", x => x.Id);
+                    _ = table.PrimaryKey("PK_AppAttachments", x => x.Id);
                 });
 
-            migrationBuilder.CreateTable(
+            _ = migrationBuilder.CreateTable(
                 name: "Branchs",
                 columns: table => new
                 {
@@ -43,10 +41,10 @@ namespace DAL.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Branchs", x => x.Id);
+                    _ = table.PrimaryKey("PK_Branchs", x => x.Id);
                 });
 
-            migrationBuilder.CreateTable(
+            _ = migrationBuilder.CreateTable(
                 name: "SystemUsers",
                 columns: table => new
                 {
@@ -62,10 +60,10 @@ namespace DAL.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SystemUsers", x => x.Id);
+                    _ = table.PrimaryKey("PK_SystemUsers", x => x.Id);
                 });
 
-            migrationBuilder.CreateTable(
+            _ = migrationBuilder.CreateTable(
                 name: "Shops",
                 columns: table => new
                 {
@@ -84,8 +82,8 @@ namespace DAL.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Shops", x => x.Id);
-                    table.ForeignKey(
+                    _ = table.PrimaryKey("PK_Shops", x => x.Id);
+                    _ = table.ForeignKey(
                         name: "FK_Shops_Branchs_Fk_Branch",
                         column: x => x.Fk_Branch,
                         principalTable: "Branchs",
@@ -93,7 +91,7 @@ namespace DAL.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
+            _ = migrationBuilder.CreateTable(
                 name: "ShopGalleries",
                 columns: table => new
                 {
@@ -107,8 +105,8 @@ namespace DAL.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ShopGalleries", x => x.Id);
-                    table.ForeignKey(
+                    _ = table.PrimaryKey("PK_ShopGalleries", x => x.Id);
+                    _ = table.ForeignKey(
                         name: "FK_ShopGalleries_Shops_Fk_Shop",
                         column: x => x.Fk_Shop,
                         principalTable: "Shops",
@@ -116,34 +114,34 @@ namespace DAL.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.InsertData(
+            _ = migrationBuilder.InsertData(
                 table: "SystemUsers",
                 columns: new[] { "Id", "LastModifiedBy", "Name", "Password", "UserName" },
                 values: new object[] { 1, null, "Developer", "$2a$11$2g.WlH.xJU8J3HP8leCJ.em9Nq5l3CFBRYDVnwtJkBd5YavlamNze", "Developer" });
 
-            migrationBuilder.CreateIndex(
+            _ = migrationBuilder.CreateIndex(
                 name: "IX_Branchs_Name",
                 table: "Branchs",
                 column: "Name",
                 unique: true);
 
-            migrationBuilder.CreateIndex(
+            _ = migrationBuilder.CreateIndex(
                 name: "IX_ShopGalleries_Fk_Shop",
                 table: "ShopGalleries",
                 column: "Fk_Shop");
 
-            migrationBuilder.CreateIndex(
+            _ = migrationBuilder.CreateIndex(
                 name: "IX_Shops_Fk_Branch",
                 table: "Shops",
                 column: "Fk_Branch");
 
-            migrationBuilder.CreateIndex(
+            _ = migrationBuilder.CreateIndex(
                 name: "IX_Shops_Name",
                 table: "Shops",
                 column: "Name",
                 unique: true);
 
-            migrationBuilder.CreateIndex(
+            _ = migrationBuilder.CreateIndex(
                 name: "IX_SystemUsers_UserName",
                 table: "SystemUsers",
                 column: "UserName",
@@ -152,19 +150,19 @@ namespace DAL.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
+            _ = migrationBuilder.DropTable(
                 name: "AppAttachments");
 
-            migrationBuilder.DropTable(
+            _ = migrationBuilder.DropTable(
                 name: "ShopGalleries");
 
-            migrationBuilder.DropTable(
+            _ = migrationBuilder.DropTable(
                 name: "SystemUsers");
 
-            migrationBuilder.DropTable(
+            _ = migrationBuilder.DropTable(
                 name: "Shops");
 
-            migrationBuilder.DropTable(
+            _ = migrationBuilder.DropTable(
                 name: "Branchs");
         }
     }

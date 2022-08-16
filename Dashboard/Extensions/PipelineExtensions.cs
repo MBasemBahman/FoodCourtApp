@@ -4,7 +4,7 @@
     {
         public static void ConfigureStaticFiles(this WebApplication app)
         {
-            app.UseStaticFiles(new StaticFileOptions()
+            _ = app.UseStaticFiles(new StaticFileOptions()
             {
                 OnPrepareResponse = ctx =>
                 {

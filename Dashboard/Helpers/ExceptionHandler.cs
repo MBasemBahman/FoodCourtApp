@@ -1,6 +1,4 @@
-﻿using Dashboard.Services;
-
-namespace Dashboard.Helpers
+﻿namespace Dashboard.Helpers
 {
     public class ExceptionHandler
     {
