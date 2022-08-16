@@ -28,7 +28,8 @@ namespace Repository.DBModels.ShopModels
                        Branch = new Entities.DtoModels.AppModels.BranchDto
                        {
                            Name = a.Branch.Name
-                       }
+                       },
+                       Order = a.Order
                    })
                    .Search(parameters.SearchColumns, parameters.SearchTerm)
                    .Sort(parameters.OrderBy);

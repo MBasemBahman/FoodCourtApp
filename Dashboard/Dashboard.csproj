@@ -24,7 +24,9 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\Uploud\Branch\Logo\" />
+    <Folder Include="wwwroot\Uploud\AppAttachment\" />
     <Folder Include="wwwroot\Uploud\Shop\Logo\" />
+    <Folder Include="wwwroot\Uploud\Shop\Gallery\" />
   </ItemGroup>
 
 </Project>

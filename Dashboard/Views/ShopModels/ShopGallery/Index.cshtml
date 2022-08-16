@@ -1,0 +1,116 @@
+﻿@model ShopGalleryFilter
+@{
+    ViewData["Title"] = Localizer.Get("ShopGalleries");
+    ViewBag.useDatatable = true;
+    ViewBag.useModels = true;
+
+    var row = new ShopGalleryDto();
+
+    ViewBag.emptyLayout = ViewData["ProfileLayOut"] != null ? (bool)ViewData["ProfileLayOut"] : false;
+
+    ViewBag.useDropzone = true;
+}
+
+
+    <section id="ajax-datatable">
+        <div class="row">
+            <div class="col-12">
+            @if(Model.Fk_Shop > 0){
+                <div class="card">
+                <div class="card-header border-bottom">
+                    <h4 class="card-title"> @Localizer.Get("Add Images")</h4>
+                </div>
+                <br />
+                <div class="card-body">
+                    <form asp-action="Uploud" asp-controller="ShopGallery" method="post" class="dropzone dropzone-area" id="dpz-multiple-files">
+                        <input type="hidden" name="Fk_Shop" value="@Model.Fk_Shop" />
+                        <div class="dz-message" id="attachmentuploaddropZone">@Localizer.Get("Drop files here or click to upload.")</div>
+                    </form>
+                </div>
+            </div>
+            }
+                <div class="card">
+                    <div class="card-header border-bottom">
+                        <h4 class="card-title"> @ViewData["Title"]</h4>
+                    </div>
+                    <div class="card-datatable">
+                        <table class="datatables datatables-ajax table table-responsive table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => row.Id)
+
+                                        <a id="editModal" asp-action="Edit">
+                                        </a>
+                                    <a id="delete" asp-action="Delete">
+                                    </a>
+                                    </th>
+                                    <th>@Html.DisplayNameFor(model => row.ImageUrl)</th>
+                                    <th>@Html.DisplayNameFor(model => row.Order)</th>
+                                    <th>@Html.DisplayNameFor(model => row.CreatedAt)</th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => row.Id)
+                                    </th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+@section scripts{
+    <script>
+        $(function () {
+            var dt_ajax_table = $('.datatables');
+            if (dt_ajax_table.length) {
+                var dt_ajax = dt_ajax_table.dataTable({
+                    // Ajax Filter
+                    ajax: {
+                        url: '@Url.Action("LoadTable")',
+                        type: "POST",
+                        contentType: "application/json",
+                        dataType: "json",
+                        data: function (data) {
+                            data.Id = @Model.Id;
+                            data.Fk_Shop = @Model.Fk_Shop;
+
+                            return JSON.stringify(data);
+                        }
+                    },
+                    // Columns Setups
+                    columns: [
+                        { data: "id" },
+                        {
+                            data: "imageUrl",
+                            render: function (data, type, row) {
+                                var image =  data;
+                                return '<div class="d-flex justify-content-left align-items-center">'
+                                    + '<a href="' + image + '" target="_blank" class="me-25">'
+                                    + '<img src="' + image + '" id="account-upload-img" class="uploadedAvatar rounded me-50" height="100" width="100">'
+                                    + ' </a></div>';
+                            }
+                        },
+                        { data: "order" },
+                        { data: "createdAt" },
+                        { data: "id" },
+                    ]
+                });
+
+                $("button[type=reset]").on("click", function () {
+                    $(".dt-date").each(function () {
+                        $(this).val('');
+                    })
+                });
+                $('body').on('submit', '.filter', function () {
+                    event.preventDefault();
+                    dt_ajax_table.DataTable().draw();
+
+                });
+
+            }
+        });
+    </script>
+}

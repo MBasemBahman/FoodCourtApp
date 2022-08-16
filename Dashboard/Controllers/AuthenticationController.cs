@@ -14,7 +14,7 @@
 
         public IActionResult Index()
         {
-            string UserName = Request.Cookies["UserName"];
+            string UserName = Request.Cookies[ViewDataConstants.AccountName];
             if ((!string.IsNullOrEmpty(UserName)) && _Repository.SystemUser.FindByCondition(a => a.UserName == UserName,trackChanges:false).Any())
             {
                 SystemUser systemUser = _Repository.SystemUser.FindByCondition(a => a.UserName == UserName,trackChanges:false).FirstOrDefault();
@@ -50,6 +50,49 @@
             {
                 ViewData["Error"] = _ExceptionHandler.GetException(ex);
             }
+            return View(model);
+        }
+        public IActionResult ChangePassword()
+        {
+            string UserName = Request.Cookies[ViewDataConstants.AccountName];
+            return string.IsNullOrEmpty(UserName) || !_Repository.SystemUser.FindByCondition(a=>a.UserName==UserName,trackChanges:false).Any() ? NotFound() : View();
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    string UserName = Request.Cookies[ViewDataConstants.AccountName];
+
+                    if (string.IsNullOrEmpty(UserName) || !_Repository.SystemUser.FindByCondition(a => a.UserName == UserName, trackChanges: false).Any())
+                    {
+                        return NotFound();
+                    }
+
+                    SystemUser systemUser = _Repository.SystemUser.FindByCondition(a => a.UserName == UserName,trackChanges:true).FirstOrDefault();
+
+                    if (!BC.Verify(model.OldPassword, systemUser.Password))
+                    {
+                        throw new Exception("Old password is incorrect!");
+                    }
+
+                    systemUser.Password = BC.HashPassword(model.NewPassword);
+
+                  await  _Repository.Save();
+
+                    return RedirectToAction(nameof(Logout));
+                }
+            }
+            catch (Exception ex)
+            {
+                ViewData["Error"] = _ExceptionHandler.GetException(ex);
+            }
+
             return View(model);
         }
 

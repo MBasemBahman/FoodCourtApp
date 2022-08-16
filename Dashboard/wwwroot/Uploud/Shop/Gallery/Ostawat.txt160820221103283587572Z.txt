@@ -1,0 +1,7 @@
+Ostawat:
+------
+DriverHiring: Fk_Driver, Fk_Company, StartDate,EndDate,IsApprovd
+
+Portal : from driver profile (add btn تم توظيف السائق) by default startat today, endat after 3 months
+
+admin: edit(approve,dates) , delete

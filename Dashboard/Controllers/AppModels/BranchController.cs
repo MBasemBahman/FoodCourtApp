@@ -145,7 +145,7 @@
         {
             Branch data = await _Repository.Branch.FindById(id, trackChanges: false);
 
-            return View("~/Views/AppModels/Branch/CreateOrEdit.cshtml", data != null && !_Repository.Shop.FindAll(new 
+            return View("~/Views/AppModels/Branch/Delete.cshtml", data != null && !_Repository.Shop.FindAll(new 
                 ShopParameters { Fk_Branch = id},trackChanges:false).Any());
         }
 

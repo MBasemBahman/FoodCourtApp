@@ -122,7 +122,7 @@
         {
             SystemUser data = await _Repository.SystemUser.FindById(id, trackChanges: false);
 
-            return View("~/Views/AuthModels/SystemUser/CreateOrEdit.cshtml", data != null);
+            return View("~/Views/AuthModels/SystemUser/Delete.cshtml", data != null);
         }
 
         [HttpPost, ActionName("Delete")]

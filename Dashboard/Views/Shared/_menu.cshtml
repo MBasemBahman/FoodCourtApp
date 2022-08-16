@@ -66,6 +66,18 @@
                 </li>
 
 
+            <li  class="@(active =="AppAttachment"?"active":"") nav-item">
+                <a class="d-flex align-items-center"
+                   asp-action="Index"
+                   asp-controller="AppAttachment">
+                    <i data-feather='paperclip'></i>
+                    <span class="menu-title text-truncate">
+                        @Localizer.Get("AppAttachments")
+                    </span>
+                </a>
+            </li>
+
+
 
             <li  class="@(active =="SystemUser"?"active":"") nav-item">
                 <a class="d-flex align-items-center"

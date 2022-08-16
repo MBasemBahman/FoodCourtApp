@@ -123,6 +123,9 @@
   <data name="Add Files" xml:space="preserve">
     <value>Add Files</value>
   </data>
+  <data name="Add Images" xml:space="preserve">
+    <value>Add Images</value>
+  </data>
   <data name="Add New" xml:space="preserve">
     <value>Add New</value>
   </data>
@@ -140,6 +143,9 @@
   </data>
   <data name="All Rights Reserved" xml:space="preserve">
     <value>All Rights Reserved</value>
+  </data>
+  <data name="AppAttachments" xml:space="preserve">
+    <value>App Attachments</value>
   </data>
   <data name="April" xml:space="preserve">
     <value>April</value>
@@ -216,6 +222,9 @@
   <data name="Download" xml:space="preserve">
     <value>Download</value>
   </data>
+  <data name="Drop files here or click to upload." xml:space="preserve">
+    <value>Drop files here or click to upload.</value>
+  </data>
   <data name="Edit" xml:space="preserve">
     <value>Edit</value>
   </data>
@@ -236,6 +245,9 @@
   </data>
   <data name="Home" xml:space="preserve">
     <value>Home</value>
+  </data>
+  <data name="ImageUrl" xml:space="preserve">
+    <value>Image</value>
   </data>
   <data name="January" xml:space="preserve">
     <value>January</value>
@@ -341,6 +353,9 @@
   </data>
   <data name="ShopCount" xml:space="preserve">
     <value>Shops</value>
+  </data>
+  <data name="ShopGalleries" xml:space="preserve">
+    <value>Gallery</value>
   </data>
   <data name="Shops" xml:space="preserve">
     <value>Shops</value>

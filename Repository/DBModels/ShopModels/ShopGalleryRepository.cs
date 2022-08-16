@@ -20,6 +20,7 @@ namespace Repository.DBModels.ShopModels
                        Id = a.Id,
                        ImageUrl =a.StorageUrl + a.ImageUrl,
                        CreatedAtVal = a.CreatedAt,
+                       Order = a.Order
                    })
                    .Search(parameters.SearchColumns, parameters.SearchTerm)
                    .Sort(parameters.OrderBy);

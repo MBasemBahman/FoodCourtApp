@@ -1,6 +1,8 @@
 ﻿
 using Entities.DBModels.AppModels;
 using Entities.DtoModels.AppModels;
+using Microsoft.AspNetCore.Http;
+using Services;
 
 namespace Repository.DBModels.AppModels
 {
@@ -48,6 +50,13 @@ namespace Repository.DBModels.AppModels
             return id == 0 ? null
                          : await FindByCondition(a => a.Id == id, trackChanges: trackChanges)
                          .SingleOrDefaultAsync();
+        }
+
+
+        public async Task<string> UploadAppAttachments(string rootPath, IFormFile file)
+        {
+            FileUploader uploader = new(rootPath);
+            return await uploader.UploudFile(file, "Uploud/AppAttachment");
         }
     }
 

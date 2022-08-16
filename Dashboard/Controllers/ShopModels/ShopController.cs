@@ -61,7 +61,7 @@
 
         public IActionResult Profile(int id)
         {
-            ViewData["Active"] = "Project";
+            ViewData["Active"] = "Shop";
 
             bool otherLang = (bool)Request.HttpContext.Items[ApiConstants.Language];
 
@@ -95,7 +95,6 @@
             if (!ModelState.IsValid)
             {
                 SetViewData(IsProfile,id);
-                ViewData["IsProfile"] = IsProfile;
                 return View("~/Views/ShopModels/Shop/CreateOrEdit.cshtml", model);
             }
             try
@@ -146,7 +145,7 @@
         {
             Shop data = await _Repository.Shop.FindById(id, trackChanges: false);
 
-            return View("~/Views/ShopModels/Shop/CreateOrEdit.cshtml", data != null);
+            return View("~/Views/ShopModels/Shop/Delete.cshtml", data != null);
         }
 
         [HttpPost, ActionName("Delete")]

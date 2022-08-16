@@ -1,0 +1,58 @@
+AccountCertificate: Add in CourseProfile (Done)
+
+CompanyModel Add Data From WhatsApp (Done)
+
+CompanyContactPersonLocation: Fk_CompanyContactPerson, Fk_Branch?, Fk_Department? (Done)
+
+CourseContactPerson/CompanyContactPerson: + PhoneTwo, WhatsApp (Done)
+
+CompanyContactPerson:+  IsDeleted (Done)
+
+Branch:+ Address (Done)
+
+Course: Language (MultiSelect) From DropDown (Done)
+
+AccountCourse Add In Course Profile (Done)
+
+AccountCourse :+ IsActive  (Done)
+
+Create AccountCourse From Course (Filter Account by Company(must select) , Branch, Department, group)  (Done)
+
+MeetingAccount Create From Meeting Profile As Account Course (Done)
+
+Meeting Index Issue  (Done)
+
+CompanyAccount:+ EmployeeCode  (Done)
+
+Question:+ Order , Content (HTML) (Done)
+
+Groups :+ Notes (Done)
+
+Company Accounts (موظفين) (Done)
+
+
+Meeting (تدريبات خارجية) (Done)
+
+Account Profile (Show Company Account)
+
+Account Create/Edit AccountType (if from index type by default Visitor) if Company Account Employee (Done)
+
+AccountStateEnum :+ Pan (Done)
+
+ExamSection: Fk_Exam, Title, Content(HTML), Order (Done)
+
+Question: Fk_ExamSection?  (Done)
+
+Create Exam Title,SubTitle By Default (Final Exam) , if Select Topic Change To(Quiz) (Done)
+
+GroupCourse: Rmv From DB  (Done)
+
+MeetingGroup Rmv From DataBase  (Done)
+---------------------------
+
+Charts And Advanced Filter
+Review(WhatsApp)
+------------------------
+
+
+

@@ -59,6 +59,11 @@ namespace Dashboard
 
             CreateMap<ShopFilter, ShopParameters>();
 
+            CreateMap<ShopGallery, ShopGalleryEditDto>();
+
+            CreateMap<ShopGalleryEditDto,ShopGallery>();
+
+            CreateMap<ShopGalleryFilter, ShopGalleryParameters>();
 
             #endregion
 
