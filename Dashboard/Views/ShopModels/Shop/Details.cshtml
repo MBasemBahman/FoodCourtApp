@@ -37,7 +37,15 @@
                         @Html.Raw(Model.Address)
                     </p>
                 </div>
-
+                <div class="card-body  col-12">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <span class="badge bg-light-primary">@Html.DisplayNameFor(model => Model.SearchTxt)</span>
+                    </div>
+                    <br />
+                    <p>
+                        @Html.Raw(Model.SearchTxt)
+                    </p>
+                </div>
             </div>
             <hr />
             <div class="row">

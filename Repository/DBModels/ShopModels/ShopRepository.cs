@@ -18,6 +18,7 @@ namespace Repository.DBModels.ShopModels
                    {
                        Id = a.Id,
                        Name = a.Name,
+                       SearchTxt = a.SearchTxt,
                        Address = a.Address,
                        GalleryCount = a.ShopGalleries.Count,
                        ImageUrl = a.StorageUrl + a.ImageUrl,

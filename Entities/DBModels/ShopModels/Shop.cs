@@ -17,6 +17,10 @@ namespace Entities.DBModels.ShopModels
         [DataType(DataType.MultilineText)]
         public string Address { get; set; }
 
+        [DisplayName(nameof(SearchTxt))]
+        [DataType(DataType.MultilineText)]
+        public string SearchTxt { get; set; }
+
         [ForeignKey(nameof(Branch))]
         [DisplayName(nameof(Branch))]
         public int Fk_Branch { get; set; }

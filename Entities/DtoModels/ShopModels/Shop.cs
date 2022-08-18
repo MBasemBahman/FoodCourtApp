@@ -15,6 +15,10 @@ namespace Entities.DtoModels.ShopModels
         [DisplayName(nameof(Name))]
         public string Name { get; set; }
 
+        [DisplayName(nameof(SearchTxt))]
+        [DataType(DataType.MultilineText)]
+        public string SearchTxt { get; set; }
+
         [DisplayName(nameof(Branch))]
         public BranchDto Branch { get; set; }
 
@@ -43,6 +47,10 @@ namespace Entities.DtoModels.ShopModels
         [DisplayName(nameof(Address))]
         [DataType(DataType.MultilineText)]
         public string Address { get; set; }
+
+        [DisplayName(nameof(SearchTxt))]
+        [DataType(DataType.MultilineText)]
+        public string SearchTxt { get; set; }
     }
 
     public class ShopEditDto
@@ -59,6 +67,10 @@ namespace Entities.DtoModels.ShopModels
         [DisplayName(nameof(Address))]
         [DataType(DataType.MultilineText)]
         public string Address { get; set; }
+
+        [DisplayName(nameof(SearchTxt))]
+        [DataType(DataType.MultilineText)]
+        public string SearchTxt { get; set; }
     }
 
 
@@ -80,6 +92,10 @@ namespace Entities.DtoModels.ShopModels
         [DisplayName(nameof(Address))]
         [DataType(DataType.MultilineText)]
         public string Address { get; set; }
+
+        [DisplayName(nameof(SearchTxt))]
+        [DataType(DataType.MultilineText)]
+        public string SearchTxt { get; set; }
 
         public string ImageUrl { get; set; }
 
