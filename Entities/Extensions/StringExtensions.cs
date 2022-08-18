@@ -4,7 +4,7 @@
     {
         public static string SafeTrim(this string value)
         {
-            return value == null ? string.Empty : value.Trim().SafeReplace(" ","");
+            return value == null ? string.Empty : value.Trim();
         }
 
         public static string SafeReplace(this string value, string oldChar, string newChar)
