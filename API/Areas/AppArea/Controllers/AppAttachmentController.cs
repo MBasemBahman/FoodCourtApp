@@ -17,11 +17,9 @@ namespace API.Areas.AppArea.Controllers
 
         [HttpGet]
         [Route(nameof(GetAppAttachments))]
-        public async Task<IEnumerable<AppAttachmentDto>> GetAppAttachments([FromQuery] RequestParameters parameters)
+        public async Task<IEnumerable<AppAttachmentDto>> GetAppAttachments([FromQuery] AppAttachmentParameters parameters)
         {
-            PagedList<AppAttachmentDto> appAttachments = await _repositoryManager.AppAttachment.GetAppAttachmentsPaged(parameters);
-
-            SetPagination(appAttachments.MetaData, parameters);
+            IEnumerable<AppAttachmentDto> appAttachments = await _repositoryManager.AppAttachment.GetAppAttachments(parameters).ToListAsync();
 
             return appAttachments;
         }

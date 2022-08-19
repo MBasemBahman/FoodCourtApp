@@ -24,9 +24,9 @@
         }
 
         [HttpPost]
-        public async Task<IActionResult> LoadTable([FromBody] CommonFilter dtParameters)
+        public async Task<IActionResult> LoadTable([FromBody] AppAttachmentViewFilter dtParameters)
         {
-            RequestParameters parameters = new()
+            AppAttachmentParameters parameters = new()
             {
                 SearchColumns = "Id"
             };

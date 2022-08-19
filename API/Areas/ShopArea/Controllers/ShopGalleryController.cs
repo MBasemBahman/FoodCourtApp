@@ -19,9 +19,7 @@ namespace API.Areas.ShopArea.Controllers
         [Route(nameof(GetShopGalleries))]
         public async Task<IEnumerable<ShopGalleryDto>> GetShopGalleries([FromQuery] ShopGalleryParameters parameters)
         {
-            PagedList<ShopGalleryDto> shopGallerys = await _repositoryManager.ShopGallery.GetShopGallerysPaged(parameters);
-
-            SetPagination(shopGallerys.MetaData, parameters);
+            IEnumerable<ShopGalleryDto> shopGallerys = await _repositoryManager.ShopGallery.GetShopGallerys(parameters).ToListAsync();
 
             return shopGallerys;
         }

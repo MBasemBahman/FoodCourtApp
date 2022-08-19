@@ -30,7 +30,17 @@ namespace Repository.DBModels.ShopModels
                        {
                            Name = a.Branch.Name
                        },
-                       Order = a.Order
+                       Order = a.Order,
+                       Galleries = parameters.IncludeGallery ? a.ShopGalleries
+                                                                .OrderBy(a => a.Order)
+                                                                .Select(a => new ShopGalleryDto
+                                                                {
+                                                                    Id = a.Id,
+                                                                    ImageUrl = a.StorageUrl + a.ImageUrl,
+                                                                    CreatedAtVal = a.CreatedAt,
+                                                                    Order = a.Order
+                                                                })
+                                                                .ToList() : null,
                    })
                    .Search(parameters.SearchColumns, parameters.SearchTerm)
                    .Sort(parameters.OrderBy);

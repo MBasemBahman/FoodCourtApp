@@ -8,6 +8,8 @@ namespace Entities.DtoModels.ShopModels
     {
         [DisplayName(nameof(Fk_Branch))]
         public int Fk_Branch { get; set; }
+
+        public bool IncludeGallery { get; set; }
     }
 
     public class ShopDto : AuditImageEntityDto
@@ -31,6 +33,8 @@ namespace Entities.DtoModels.ShopModels
 
         [DisplayName(nameof(GalleryCount))]
         public int GalleryCount { get; set; }
+    
+        public IList<ShopGalleryDto> Galleries { get; set; }
     }
 
     public class ShopCreateDto

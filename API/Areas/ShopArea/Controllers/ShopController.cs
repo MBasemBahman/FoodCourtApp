@@ -21,9 +21,7 @@ namespace API.Areas.ShopArea.Controllers
         {
             parameters.SearchTerm = ArabicCharService.GetBaseString(parameters.SearchTerm);
 
-            PagedList<ShopDto> shops = await _repositoryManager.Shop.GetShopsPaged(parameters);
-
-            SetPagination(shops.MetaData, parameters);
+            IEnumerable<ShopDto> shops = await _repositoryManager.Shop.GetShops(parameters).ToListAsync();
 
             return shops;
         }

@@ -16,12 +16,10 @@ namespace API.Areas.AppArea.Controllers
         { }
 
         [HttpGet]
-        [Route(nameof(GetBranchs))]
-        public async Task<IEnumerable<BranchDto>> GetBranchs([FromQuery] RequestParameters parameters)
+        [Route(nameof(GetBranchsAsync))]
+        public async Task<IEnumerable<BranchDto>> GetBranchsAsync([FromQuery] RequestParameters parameters)
         {
-            PagedList<BranchDto> branches = await _repositoryManager.Branch.GetBranchsPaged(parameters);
-
-            SetPagination(branches.MetaData, parameters);
+            IEnumerable<BranchDto> branches = await _repositoryManager.Branch.GetBranchs(parameters).ToListAsync();
 
             return branches;
         }

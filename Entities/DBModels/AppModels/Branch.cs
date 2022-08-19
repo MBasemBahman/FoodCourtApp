@@ -15,5 +15,8 @@ namespace Entities.DBModels.AppModels
 
         [DisplayName(nameof(Shops))]
         public ICollection<Shop> Shops { get; set; }
+
+        [DisplayName(nameof(AppAttachments))]
+        public ICollection<AppAttachment> AppAttachments { get; set; }
     }
 }

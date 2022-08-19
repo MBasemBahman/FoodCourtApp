@@ -13,12 +13,13 @@ namespace Repository.DBModels.AppModels
         {
         }
 
-        public IQueryable<AppAttachmentDto> GetAppAttachments(RequestParameters parameters)
+        public IQueryable<AppAttachmentDto> GetAppAttachments(AppAttachmentParameters parameters)
         {
             return FindAll(parameters, trackChanges: false)
                    .Select(a => new AppAttachmentDto
                    {
                        Id = a.Id,
+                       Fk_Branch = a.Fk_Branch,
                        CreatedAtVal = a.CreatedAt,
                        FileLength = a.FileLength,
                        FileName = a.FileName,
@@ -31,19 +32,20 @@ namespace Repository.DBModels.AppModels
         }
 
         public async Task<PagedList<AppAttachmentDto>> GetAppAttachmentsPaged(
-          RequestParameters parameters)
+          AppAttachmentParameters parameters)
         {
             return await PagedList<AppAttachmentDto>.ToPagedList(GetAppAttachments(parameters), parameters.PageNumber, parameters.PageSize);
         }
 
         public AppAttachmentDto GetAppAttachmentbyId(int id)
         {
-            return GetAppAttachments(new RequestParameters { Id = id }).SingleOrDefault();
+            return GetAppAttachments(new AppAttachmentParameters { Id = id }).SingleOrDefault();
         }
 
-        public IQueryable<AppAttachment> FindAll(RequestParameters parameters, bool trackChanges)
+        public IQueryable<AppAttachment> FindAll(AppAttachmentParameters parameters, bool trackChanges)
         {
-            return FindByCondition(a => parameters.Id == 0 || a.Id == parameters.Id, trackChanges);
+            return FindByCondition(a => (parameters.Id == 0 || a.Id == parameters.Id) &&
+                                        (parameters.Fk_Branch == 0 || a.Fk_Branch == parameters.Fk_Branch), trackChanges);
         }
 
         public async Task<AppAttachment> FindById(int id, bool trackChanges)

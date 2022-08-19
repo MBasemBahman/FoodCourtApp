@@ -44,6 +44,8 @@
 
             _ = CreateMap<AppAttachmentEditDto, AppAttachment>();
 
+            _ = CreateMap<AppAttachmentViewFilter, AppAttachmentParameters>();
+
             #endregion
 
             #region ShopModels
@@ -65,7 +67,6 @@
 
             #endregion
 
-
             #region Auth Models
 
 
@@ -74,8 +75,6 @@
             _ = CreateMap<SystemUser, SystemUserCreateOrEditDto>();
 
             #endregion
-
-
 
         }
     }
