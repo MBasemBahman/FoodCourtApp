@@ -33,7 +33,13 @@ namespace Entities.DtoModels.ShopModels
 
         [DisplayName(nameof(GalleryCount))]
         public int GalleryCount { get; set; }
-    
+
+        [JsonIgnore]
+        public DateTime LastGalleryModifiedAtVal { get; set; }
+
+        [DisplayName(nameof(LastGalleryModifiedAt))]
+        public string LastGalleryModifiedAt => LastGalleryModifiedAtVal.AddHours(2).ToShortDateTimeString();
+
         public IList<ShopGalleryDto> Galleries { get; set; }
     }
 

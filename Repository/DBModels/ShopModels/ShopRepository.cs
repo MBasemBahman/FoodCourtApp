@@ -31,6 +31,10 @@ namespace Repository.DBModels.ShopModels
                            Name = a.Branch.Name
                        },
                        Order = a.Order,
+                       LastGalleryModifiedAtVal = a.ShopGalleries
+                                                   .OrderByDescending(a => a.Id)
+                                                   .Select(a => a.CreatedAt)
+                                                   .FirstOrDefault(),
                        Galleries = parameters.IncludeGallery ? a.ShopGalleries
                                                                 .OrderBy(a => a.Order)
                                                                 .Select(a => new ShopGalleryDto
