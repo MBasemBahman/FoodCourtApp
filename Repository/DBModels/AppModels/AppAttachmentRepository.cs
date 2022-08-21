@@ -30,8 +30,8 @@ namespace Repository.DBModels.AppModels
                        new BranchDto
                        {
                            Name = a.Branch.Name
-                       } 
-                       :null
+                       }
+                       : null
                    })
                    .Search(parameters.SearchColumns, parameters.SearchTerm)
                    .Sort(parameters.OrderBy);

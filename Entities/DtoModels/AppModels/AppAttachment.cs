@@ -1,5 +1,4 @@
-﻿using Entities.DBModels.AppModels;
-using Entities.Features.RequestFeatures;
+﻿using Entities.Features.RequestFeatures;
 
 namespace Entities.DtoModels.AppModels
 {
