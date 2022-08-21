@@ -20,6 +20,8 @@
             };
 
             ViewData["ProfileLayOut"] = ProfileLayOut;
+            ViewData["Branches"] = _Repository.Branch.GetBranchesLoopUp(new RequestParameters());
+
             return View("~/Views/AppModels/AppAttachment/Index.cshtml", filter);
         }
 
@@ -105,7 +107,7 @@
         }
 
 
-        public async Task<IActionResult> Uploud()
+        public async Task<IActionResult> Uploud(int? Fk_Branch = null)
         {
             IFormFile Images = HttpContext.Request.Form.Files["file"];
             if (Images != null)
@@ -119,6 +121,7 @@
                     FileLength = Images.Length,
                     FileName = Images.FileName,
                     FileType = Images.ContentType,
+                    Fk_Branch = Fk_Branch
                 };
 
                 _Repository.AppAttachment.Create(AppAttachment);

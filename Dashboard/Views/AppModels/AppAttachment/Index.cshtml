@@ -40,6 +40,16 @@
 
             <section id="ajax-datatable">
                 <div class="row">
+                    <div class="col-md-12 col-12">
+                        <div class="mb-1">
+                            <label class="form-label">@Localizer.Get("Branch")</label>
+                            <select id="Fk_Branch" class="form-select" asp-items="@(new SelectList(ViewData["Branches"] as Dictionary<string,string>,"Key","Value"))">
+                            <option value="">@Localizer.Get("Not Found")</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col-12">
                         
                             <div class="card">
@@ -49,7 +59,8 @@
                                 <br />
                                 <div class="card-body">
                                 <form asp-action="Uploud" asp-controller="AppAttachment" method="post" class="dropzone dropzone-area" id="dpz-multiple-files">
-                                        <div class="dz-message" id="attachmentuploaddropZone">@Localizer.Get("Drop files here or click to upload.")</div>
+                                    <input type="hidden" name="Fk_Branch" id="Fk_BranchValue" />  
+                                    <div class="dz-message" id="attachmentuploaddropZone">@Localizer.Get("Drop files here or click to upload.")</div>
                                     </form>
                                 </div>
                             </div>
@@ -70,6 +81,7 @@
                                                 </a>
                                             </th>
                                             <th>@Html.DisplayNameFor(model => row.FileName)</th>
+                                            <th>@Html.DisplayNameFor(model => row.Branch)</th>
                                             <th>@Html.DisplayNameFor(model => row.Order)</th>
                                             <th>@Html.DisplayNameFor(model => row.CreatedAt)</th>
                                             <th>
@@ -92,6 +104,8 @@
 
 @section scripts{
     <script>
+
+
         $(function () {
             var dt_ajax_table = $('.datatables');
             if (dt_ajax_table.length) {
@@ -118,6 +132,16 @@
                                 return  '<a download='+data+' href="' + image + '" target="_blank" class="me-25">'+data+'</a>';
                             }
                         },
+                        {data:"branch",
+                        render:function(data){
+                            if(data!=null){
+                                return data.name;
+                            }
+                            else{
+                                return '-';
+                            }
+                        }
+                        },
                         { data: "order" },
                         { data: "createdAt" },
                         { data: "id" },
@@ -136,6 +160,15 @@
                 });
 
             }
+        });
+
+        $(document).ready(function(){
+            $("#Fk_BranchValue").val($("#Fk_Branch").val());
+
+            $("#Fk_Branch").on("change",function(){
+                $("#Fk_BranchValue").val($("#Fk_Branch").val());
+
+            });
         });
     </script>
 }

@@ -25,7 +25,13 @@ namespace Repository.DBModels.AppModels
                        FileName = a.FileName,
                        FileType = a.FileType,
                        FileUrl = a.StorageUrl + a.FileUrl,
-                       Order = a.Order
+                       Order = a.Order,
+                       Branch = a.Fk_Branch != null ?
+                       new BranchDto
+                       {
+                           Name = a.Branch.Name
+                       } 
+                       :null
                    })
                    .Search(parameters.SearchColumns, parameters.SearchTerm)
                    .Sort(parameters.OrderBy);
